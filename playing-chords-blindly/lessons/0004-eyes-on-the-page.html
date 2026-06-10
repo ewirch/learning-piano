@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 4 · Eyes on the Page</title>
+<style>
+  :root{
+    --paper:#fbfaf6;
+    --ink:#1f1d1a;
+    --muted:#6b6459;
+    --line:#e3ddd0;
+    --amber:#c8862e;
+    --amber-tint:#f4e6cc;
+    --teal:#2e7d77;
+    --teal-tint:#d3e9e6;
+    --rule:#d8d1c2;
+    --accent:#7a3e2f;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    line-height:1.62;
+    font-size:18px;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:64px 28px 96px}
+  .eyebrow{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    text-transform:uppercase;letter-spacing:.18em;font-size:12.5px;font-weight:700;
+    color:var(--accent);margin:0 0 14px;
+  }
+  h1{
+    font-size:42px;line-height:1.08;margin:0 0 18px;font-weight:600;letter-spacing:-.01em;
+  }
+  .lede{font-size:21px;line-height:1.5;color:#2c2823;margin:0 0 8px}
+  h2{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:14px;text-transform:uppercase;letter-spacing:.14em;font-weight:700;
+    color:var(--accent);margin:54px 0 6px;
+  }
+  h2 .num{color:var(--muted);margin-right:.5em}
+  h3{font-size:22px;margin:0 0 4px;font-weight:600}
+  p{margin:14px 0}
+  strong{font-weight:600}
+  a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+  .rule{height:1px;background:var(--rule);border:0;margin:40px 0}
+
+  .diagnosis{
+    background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);
+    border-radius:8px;padding:20px 24px;margin:28px 0;font-size:17px;
+  }
+  .diagnosis p{margin:8px 0}
+  .diagnosis .label{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin:0 0 6px;
+  }
+
+  .callout{
+    background:var(--amber-tint);border-radius:8px;padding:16px 22px;margin:26px 0;
+    font-size:17px;
+  }
+  .callout strong{color:var(--accent)}
+
+  /* the three gaze rules */
+  .rules{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}
+  .rules .card{
+    flex:1 1 210px;border:1px solid var(--line);border-radius:10px;background:#fff;padding:16px 18px;
+  }
+  .rules .tag{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:11.5px;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:0 0 6px;
+  }
+  .rules p{margin:6px 0;font-size:15.5px}
+
+  /* chord chart */
+  .chart{
+    border:1px solid var(--line);border-radius:10px;background:#fff;
+    padding:24px 28px 18px;margin:22px 0;
+  }
+  .chart .songtitle{
+    font-size:20px;font-weight:600;margin:0 0 2px;text-align:center;
+  }
+  .chart .songsub{
+    font-size:13.5px;color:var(--muted);text-align:center;margin:0 0 10px;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+  }
+  .vlabel{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:11.5px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:20px 0 2px;
+  }
+  .cline{margin:6px 0 14px;font-size:18.5px;line-height:1.4}
+  .seg{display:inline-block;position:relative;padding-top:1.55em;vertical-align:bottom}
+  .chip{
+    position:absolute;top:0;left:-2px;font-style:normal;
+    font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:14px;
+    color:var(--accent);padding:0 5px;border-radius:5px;line-height:1.45;
+    transition:background .12s,color .12s;
+  }
+  .chip.cur{background:var(--amber);color:#fff}
+  .chip.nxt{background:var(--amber-tint);color:var(--accent)}
+
+  /* trainer controls */
+  .controls{
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:14.5px;
+    border:1px solid var(--line);border-radius:10px;background:#fff;
+    padding:14px 18px;margin:18px 0 8px;
+  }
+  .controls label{display:flex;align-items:center;gap:7px;white-space:nowrap}
+  .controls input[type=range]{width:120px;accent-color:var(--amber)}
+  .controls select{font:inherit;padding:2px 4px}
+  .controls button{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:15px;font-weight:700;
+    border:0;background:var(--accent);color:#fff;
+    padding:9px 22px;border-radius:7px;cursor:pointer;
+  }
+  .controls button:hover{background:#643225}
+  .tstatus{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:15px;font-weight:600;
+    color:var(--teal);min-height:1.5em;margin:4px 0 0;
+  }
+  .noscript{font-size:14.5px;color:var(--muted);font-style:italic}
+
+  /* drills */
+  .loop-banner{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:15px;letter-spacing:.02em;
+    background:#1f1d1a;color:#f7f3ea;border-radius:8px;padding:14px 20px;margin:22px 0;
+    text-align:center;
+  }
+  .loop-banner b{color:#f2c97d}
+  .drill{
+    border:1px solid var(--line);border-radius:10px;background:#fff;padding:20px 22px;margin:18px 0;
+  }
+  .drill .top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+  .badge{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;
+    letter-spacing:.06em;color:#fff;background:var(--accent);border-radius:20px;
+    padding:4px 12px;white-space:nowrap;
+  }
+  .drill .goal{
+    font-size:15px;color:var(--muted);margin-top:10px;
+    border-top:1px dashed var(--rule);padding-top:10px;
+  }
+  .drill .goal b{color:var(--ink);font-weight:600}
+
+  .teacher{
+    background:#fff;border:2px solid var(--accent);border-radius:10px;padding:22px 24px;margin:40px 0;
+  }
+  .teacher h3{color:var(--accent)}
+
+  .sources{font-size:14.5px;color:var(--muted);margin-top:14px}
+  .sources li{margin:5px 0}
+  .reopen{
+    font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-size:13.5px;
+    background:#1f1d1a;color:#f2c97d;padding:3px 8px;border-radius:5px;
+  }
+  .footer{margin-top:64px;border-top:1px solid var(--rule);padding-top:22px;color:var(--muted);font-size:14px}
+
+  @media print{
+    body{background:#fff;font-size:12pt}
+    .wrap{padding:0;max-width:100%}
+    .controls,.tstatus{display:none}
+    .drill,.teacher,.chart{break-inside:avoid}
+    a{color:var(--ink)}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">Lesson 4 · Playing chords without looking</p>
+  <h1>Eyes on the Page</h1>
+  <p class="lede">Lesson 3 gave you the engine: chord and bass, both hands, eyes closed. This lesson is the mission itself — your eyes open onto a <em>lyric-and-chord sheet</em> while your hands run that same loop on their own. Same chords, same bass, not one new note. The only thing that moves is your gaze.</p>
+
+  <div class="diagnosis">
+    <p class="label">Why this lesson, and why now</p>
+    <p>You can run the loop blind with both hands — so the hands are <strong>done</strong>. What's untrained is <em>attention</em>: where your eyes rest, and what does the job of checking. Players look down out of <strong>insecurity</strong> — to verify a note just played or about to be played — and every look down breaks the reading, kills your chance to read ahead, and drags concentration to the keys.<sup><a href="#s1">1</a></sup></p>
+    <p>But verification is a job you've already re-assigned. Your <strong>hands</strong> confirm a landing by feel, and from today your <strong>ears</strong> confirm it by sound.<sup><a href="#s2">2</a></sup> Your eyes are free — and the page gets them.</p>
+  </div>
+
+  <h2><span class="num">1</span>Nothing new in the hands — three rules for the eyes</h2>
+  <p>Everything below the wrists is Lesson 3, untouched: right hand <strong>C&nbsp;E&nbsp;G · B&nbsp;D&nbsp;G · C&nbsp;E&nbsp;A · C&nbsp;F&nbsp;A</strong>, left hand bass roots <strong>C · G · A · F</strong>, the glued fingers, the landmarks, the still-hand anchor. What's new is a discipline for everything above the wrists:</p>
+
+  <div class="rules">
+    <div class="card">
+      <p class="tag">1 · Eyes live on the page</p>
+      <p>Not "mostly". The gaze <em>rests</em> on the chart. Keeping your eyes up starts as a willed intention — deciding, before you play, that you will not look down to check.<sup><a href="#s1">1</a></sup></p>
+    </div>
+    <div class="card">
+      <p class="tag">2 · Ears do the checking</p>
+      <p>With your eyes busy, sound is your feedback. A wrong landing announces itself instantly — your ear tells you when something's not right, and helps you adjust as you go.<sup><a href="#s2">2</a></sup></p>
+    </div>
+    <div class="card">
+      <p class="tag">3 · Don't stop</p>
+      <p>A fumbled chord left behind beats a perfect chord that halts the song. Keep the flow; fix it next lap.<sup><a href="#s2">2</a></sup> When you're accompanying singing, the song doesn't wait for you.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>The whole new skill in one sentence:</strong> your hands navigate by feel, your ears verify by sound, and your eyes do exactly one job — read the page. Three channels, no overlap. That's all accompaniment is.
+  </div>
+
+  <h2><span class="num">2</span>Your practice chart — and reading ahead</h2>
+  <p>What singers and accompanists actually play from is a <strong>chord chart</strong>: lyrics with chord symbols written above them, no staff notation at all.<sup><a href="#s3">3</a></sup> Below is one written <em>for this lesson</em>. Every line is exactly one lap of your loop — <strong>C → G → Am → F</strong> — so your hands already know every note on the page. The chart isn't there to surprise them; it's there to give your eyes their new home. (As a bonus, verse two's lyrics are your own handrails — the chart teaches itself.)</p>
+  <p>And here's the one genuinely new reading skill: <strong>read ahead</strong>. Strong readers take the page in chunks, eyes ahead of the hands, so the next move is known before it's due.<sup><a href="#s2">2</a></sup> On a chord chart that's easy — the symbols are sparse. While your hands play one chord, your eyes drift to the <em>next</em> symbol. Eyes lead; hands follow.</p>
+
+  <h2><span class="num">3</span>The glance economy</h2>
+  <p>You're allowed to look down — on your terms. The difference is between a <strong>planned glance</strong> and a <strong>panic glance</strong>:</p>
+  <p>A <strong>planned glance</strong> happens at a break <em>you chose in advance</em> — the end of a line or verse — and it's made <strong>with the eyes only</strong>, head staying up, returning to the page within a beat.<sup><a href="#s1">1</a></sup> It re-anchors you without breaking the reading. A <strong>panic glance</strong> is the mid-change dive: head drops, reading stops, place lost. The drills below start by allowing a planned glance at every line break, then wean you to verse breaks, then to none. Panic glances are never on the menu — if a chord fumbles, your ears already told you, and the fix happens next lap.</p>
+
+  <h2><span class="num">4</span>The moving chart</h2>
+  <p>Put this page on your music stand (or <a href="../reference/0003-looking-up-song-chart.html">print the chart</a>). Press <strong>Start</strong>: after a count-in, the chart comes alive — the chord you should be playing lights <strong style="color:var(--amber)">solid</strong>, and the next one shades <span style="background:var(--amber-tint);padding:0 5px;border-radius:4px;font-weight:600">faint</span>, pulling your eyes one symbol ahead, exactly the read-ahead habit from above. The click keeps you honest: it doesn't wait, so your hands learn to change on time and leave fumbles behind.</p>
+
+  <div class="controls">
+    <button id="go" type="button">▶ Start</button>
+    <label>Tempo <input type="range" id="bpm" min="40" max="96" value="60" step="2"> <span id="bpmout">60</span> bpm</label>
+    <label>Beats per chord
+      <select id="bpc"><option value="4" selected>4</option><option value="2">2</option></select>
+    </label>
+    <label><input type="checkbox" id="clickon" checked> click</label>
+  </div>
+  <p class="tstatus" id="tstatus">Slow is fine — 60 bpm, 4 beats per chord means one chord every four seconds.</p>
+  <noscript><p class="noscript">Enable JavaScript for the moving chart — or print the reference chart and use any metronome.</p></noscript>
+
+  <div class="chart" id="chart">
+    <p class="songtitle">The Looking-Up Song</p>
+    <p class="songsub">key of C · every line is one lap: C → G → Am → F</p>
+
+    <p class="vlabel">Verse 1</p>
+    <p class="cline"><span class="seg"><i class="chip">C</i>My eyes were on my</span> <span class="seg"><i class="chip">G</i>fingers, and my</span> <span class="seg"><i class="chip">Am</i>fingers knew the</span> <span class="seg"><i class="chip">F</i>way,</span></p>
+    <p class="cline"><span class="seg"><i class="chip">C</i>but the song lives on the</span> <span class="seg"><i class="chip">G</i>paper, and the</span> <span class="seg"><i class="chip">Am</i>paper's far a-</span><span class="seg"><i class="chip">F</i>way.</span></p>
+    <p class="cline"><span class="seg"><i class="chip">C</i>So I'll trust the keys be-</span><span class="seg"><i class="chip">G</i>neath me, let my</span> <span class="seg"><i class="chip">Am</i>hands go on a-</span><span class="seg"><i class="chip">F</i>lone,</span></p>
+    <p class="cline"><span class="seg"><i class="chip">C</i>with my eyes upon the</span> <span class="seg"><i class="chip">G</i>music, I can</span> <span class="seg"><i class="chip">Am</i>find my way back</span> <span class="seg"><i class="chip">F</i>home.</span></p>
+
+    <p class="vlabel">Verse 2</p>
+    <p class="cline"><span class="seg"><i class="chip">C</i>C lives by the</span> <span class="seg"><i class="chip">G</i>two-group, and the</span> <span class="seg"><i class="chip">Am</i>F beside the</span> <span class="seg"><i class="chip">F</i>three,</span></p>
+    <p class="cline"><span class="seg"><i class="chip">C</i>G and A sit</span> <span class="seg"><i class="chip">G</i>tucked between the</span> <span class="seg"><i class="chip">Am</i>black keys, snug and</span> <span class="seg"><i class="chip">F</i>free.</span></p>
+    <p class="cline"><span class="seg"><i class="chip">C</i>One finger stays be-</span><span class="seg"><i class="chip">G</i>hind me, like a</span> <span class="seg"><i class="chip">Am</i>handrail I can</span> <span class="seg"><i class="chip">F</i>hold,</span></p>
+    <p class="cline"><span class="seg"><i class="chip">C</i>and when nothing stays, we</span> <span class="seg"><i class="chip">G</i>both go up to-</span><span class="seg"><i class="chip">Am</i>gether, calm and</span> <span class="seg"><i class="chip">F</i>bold.</span></p>
+  </div>
+  <p style="font-size:15px;color:var(--muted)">Look at verse two's last line: <em>"both go up together"</em> changes chords mid-word — on purpose. That's the G→Am change, the one with no handrail, where both hands ride up one white key as a single gesture. The lyric is the cue.</p>
+
+  <hr class="rule">
+
+  <h2><span class="num">5</span>Take it to the piano</h2>
+  <p>The feedback loop changes shape for the first time. Sight stays removed from the <em>hands</em> — but the check moves from your eyes to your ears, and the glance becomes a planned event, not a reflex:</p>
+
+  <div class="loop-banner">
+    <b>eyes on the page</b> → play → <b>ears check every landing</b> → planned glance at a break, only if needed → adjust next lap
+  </div>
+
+  <div class="drill">
+    <div class="top"><h3>Warm-up: eyes anywhere but down</h3><span class="badge">~2 min</span></div>
+    <p>Both hands, the loop, eyes <strong>open</strong> — fixed on the wall above your music stand. No page yet. This sounds easier than eyes closed; many find it harder, because now there's something to resist: with eyes open, looking down is always one flick away. Hold the gaze on the wall and let the handrails do their job.</p>
+    <p class="goal"><b>Goal:</b> four clean laps, eyes open, gaze never dropping to the keys.</p>
+  </div>
+
+  <div class="drill">
+    <div class="top"><h3>Follow the moving chart — hands only</h3><span class="badge">~4 min</span></div>
+    <p>Chart on the stand, trainer at <strong>60 bpm, 4 beats per chord</strong>, click on. No voice yet. Eyes track the lit chord and drift to the faint <em>next</em> one; hands change when the highlight does. If a chord fumbles, your ears caught it — <strong>keep going</strong> and fix it when the line comes around again. A <strong>planned glance</strong> (eyes only!) is allowed at each line break.</p>
+    <p class="goal"><b>Goal:</b> both verses in time with the click, no stops, no panic glances.</p>
+  </div>
+
+  <div class="drill">
+    <div class="top"><h3>Say the words</h3><span class="badge">~4 min</span></div>
+    <p>Same settings — now <strong>read the lyrics aloud</strong>, in rhythm, while your hands comp. Speaking is singing with the training wheels on: it occupies your voice and your reading attention the same way, without asking for pitch. You hummed through the loop at the end of Lesson 3; this is that, with the page added. Planned glances now only at <strong>verse</strong> breaks.</p>
+    <p class="goal"><b>Goal:</b> one full pass, voice never stopping, hands never stalling the click.</p>
+  </div>
+
+  <div class="drill">
+    <div class="top"><h3>Sing it</h3><span class="badge">~5 min</span></div>
+    <p>The mission. Make up any simple tune — or chant on one note if melody feels like too much at once; nobody's listening. Sing both verses while both hands comp and your eyes stay on the page. Nudge the tempo wherever it feels good. When verse two's last line lands — <em>"both go up together"</em> — enjoy that your hands do exactly what you're singing.</p>
+    <p class="goal"><b>Goal:</b> both verses sung, both hands comping, eyes on the page start to finish — zero glances is the prize, but two planned ones still count as a win.</p>
+  </div>
+
+  <h2><span class="num">6</span>What "done" looks like — and what's next</h2>
+  <p>Read your mission statement again: <em>play a pop/folk progression with both hands while looking at the page, sing while comping, eyes off the keys</em>. The last drill <strong>is</strong> that, end to end. When it lands, you haven't finished a lesson — you've done the thing you came here to do, in its first complete form.</p>
+  <p>From here the mission grows outward, and you get to pick the direction: a <strong>real song</strong> next (hundreds of pop and folk songs run on exactly these four chords<sup><a href="#s4">4</a></sup> — name one you actually want to sing); a <strong>richer left hand</strong> (root-and-fifth, octaves, broken bass — the patterns flagged at the end of Lesson 3); or <strong>another key</strong>, where the black keys finally join the chords and your tactile fingerprints earn their keep.</p>
+
+  <div class="teacher">
+    <h3>I'm your teacher — ask me</h3>
+    <p style="margin-bottom:0">Tell me how it went. Does the gaze keep dropping at one particular change (my bet: G→Am, the no-handrail one)? Does the singing fall apart the moment the hands move, or the hands the moment you sing? Too fast at 60, or insultingly slow? And tell me which direction calls to you — a real song (name it!), a fuller bass, or a new key — and I'll build Lesson 5 there. (If you ever want other ears on your comping, a short clip on <a href="https://www.reddit.com/r/piano/">r/piano</a> gets generous, thoughtful feedback — your call entirely.)</p>
+  </div>
+
+  <hr class="rule">
+
+  <ol class="sources">
+    <li id="s1"><a href="https://grandpianopassion.com/sight-read-without-looking-down/">Sight Read Without Looking Down — Grand Piano Passion</a> (looking down breaks reading continuity and prevents reading ahead; players look down from insecurity, to verify; keeping eyes up starts with willed intention; if you must glance, "only with the eyes, not the entire head").</li>
+    <li id="s2"><a href="https://livingpianos.com/the-3-secrets-of-sight-reading/">The 3 Secrets of Sight Reading — Robert Estrin, Living Pianos</a> (read in larger groups to anticipate what's coming; "your ear will tell you when something's not right"; keep the flow going rather than stopping at mistakes).</li>
+    <li id="s3"><a href="https://www.ashleydanyew.com/posts/how-to-read-lead-sheets-and-chord-charts">How to Read Lead Sheets and Chord Charts — Ashley Danyew</a> (a chord chart is chord symbols plus lyrics with no music notation, the standard format for accompaniment work).</li>
+    <li id="s4"><a href="https://en.wikipedia.org/wiki/I%E2%80%93V%E2%80%93vi%E2%80%93IV_progression">I–V–vi–IV progression — Wikipedia</a> (the C–G–Am–F loop and the very long list of well-known songs built on it — your menu for the next lesson).</li>
+  </ol>
+
+  <p class="footer">
+    Reopen this lesson any time: <span class="reopen">xdg-open lessons/0004-eyes-on-the-page.html</span><br>
+    Printable chart for the music stand: <span class="reopen">xdg-open reference/0003-looking-up-song-chart.html</span><br>
+    Mission: accompany singing with both hands, eyes off the keys.
+  </p>
+
+</div>
+
+<script>
+(function(){
+  var chips = Array.prototype.slice.call(document.querySelectorAll("#chart .chip"));
+  if(!chips.length) return;
+  var goBtn = document.getElementById("go");
+  var bpmEl = document.getElementById("bpm");
+  var bpmOut = document.getElementById("bpmout");
+  var bpcEl = document.getElementById("bpc");
+  var clickEl = document.getElementById("clickon");
+  var statusEl = document.getElementById("tstatus");
+
+  var timer = null, ac = null;
+  var idx = 0, beat = 0, countIn = 0;
+  var LINES = chips.length / 4;   // 4 chords per line
+
+  function period(){ return 60000 / parseInt(bpmEl.value, 10); }
+  function bpc(){ return parseInt(bpcEl.value, 10); }
+
+  function click(freq){
+    if(!clickEl.checked || !ac) return;
+    var o = ac.createOscillator(), g = ac.createGain();
+    o.frequency.value = freq;
+    o.connect(g); g.connect(ac.destination);
+    var t = ac.currentTime;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.3, t + 0.005);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.06);
+    o.start(t); o.stop(t + 0.08);
+  }
+
+  function clearHi(){
+    chips.forEach(function(c){ c.classList.remove("cur", "nxt"); });
+  }
+
+  function showChord(){
+    var i = idx % chips.length;
+    clearHi();
+    chips[i].classList.add("cur");
+    chips[(i + 1) % chips.length].classList.add("nxt");
+    if(i % 4 === 0){
+      chips[i].scrollIntoView({block: "center", behavior: "smooth"});
+    }
+    var line = Math.floor(i / 4);
+    var verse = line < LINES / 2 ? 1 : 2;
+    var pass = Math.floor(idx / chips.length) + 1;
+    statusEl.textContent = "Verse " + verse + " · line " + (line % (LINES / 2) + 1) +
+      " · pass " + pass + " — eyes on the faint chord, it's next.";
+  }
+
+  function tick(){
+    if(countIn > 0){
+      statusEl.textContent = "Count-in… " + countIn;
+      click(1175);
+      countIn--;
+      return;
+    }
+    if(beat === 0){
+      click(1175);
+      showChord();
+      idx++;
+    } else {
+      click(784);
+    }
+    beat = (beat + 1) % bpc();
+  }
+
+  function start(){
+    if(!ac){
+      try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){ ac = null; }
+    }
+    if(ac && ac.state === "suspended") ac.resume();
+    idx = 0; beat = 0; countIn = bpc();
+    timer = setInterval(tick, period());
+    goBtn.textContent = "■ Stop";
+  }
+
+  function stop(){
+    clearInterval(timer); timer = null;
+    clearHi();
+    statusEl.textContent = "Stopped. Same chords, same bass — only your gaze is being trained.";
+    goBtn.textContent = "▶ Start";
+  }
+
+  goBtn.addEventListener("click", function(){ timer ? stop() : start(); });
+
+  bpmEl.addEventListener("input", function(){
+    bpmOut.textContent = bpmEl.value;
+    if(timer){ clearInterval(timer); timer = setInterval(tick, period()); }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reference · Reading the Stack — Seventh-Chord Skeletons on the Staff</title>
+<style>
+  :root{
+    --paper:#fbfaf6; --ink:#1f1d1a; --muted:#6b6459; --line:#e3ddd0;
+    --amber:#c8862e; --amber-tint:#f4e6cc; --teal:#2e7d77; --teal-tint:#d3e9e6;
+    --rule:#d8d1c2; --accent:#7a3e2f; --red:#b23a2e;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;line-height:1.5;font-size:17px;}
+  .wrap{max-width:720px;margin:0 auto;padding:48px 28px 64px}
+  .eyebrow{font-family:"Helvetica Neue",Arial,sans-serif;text-transform:uppercase;
+    letter-spacing:.18em;font-size:12px;font-weight:700;color:var(--accent);margin:0 0 10px}
+  h1{font-size:32px;line-height:1.12;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:16px;margin:0 0 8px}
+  h2{font-family:"Helvetica Neue",Arial,sans-serif;font-size:12.5px;text-transform:uppercase;
+    letter-spacing:.13em;font-weight:700;color:var(--accent);margin:32px 0 8px}
+  p{margin:10px 0}
+  strong{font-weight:600}
+  .rule{height:1px;background:var(--rule);border:0;margin:26px 0}
+  .clef{font-family:"Noto Music","Bravura Text","Bravura",serif;fill:var(--ink)}
+  .nlabel{font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-weight:700}
+  svg{max-width:100%;height:auto}
+
+  .cols{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
+  .cols > div{flex:1 1 280px}
+  figure{margin:6px 0;text-align:center}
+  figcaption{font-size:13px;color:var(--muted);margin-top:6px}
+
+  .steps{margin:8px 0;padding-left:0;list-style:none;counter-reset:s}
+  .steps li{position:relative;padding:7px 0 7px 34px;font-size:15.5px;border-bottom:1px solid var(--line)}
+  .steps li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:7px;
+    width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;text-align:center;line-height:22px}
+
+  .shapes{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+  .shapes .chip{flex:1 1 92px;border:1px solid var(--line);border-radius:8px;padding:10px 8px;background:#fff;text-align:center}
+  .shapes .name{font-size:22px;font-weight:700;line-height:1}
+  .shapes .notes{font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-size:13.5px;letter-spacing:.04em;margin-top:6px;color:#2c2823}
+  .shapes .kind{font-size:11px;color:var(--muted);margin-top:4px}
+
+  .big-rule{background:var(--amber-tint);border-radius:8px;padding:14px 20px;margin:18px 0;font-size:17px}
+  .big-rule strong{color:var(--accent)}
+  .fine{font-size:14px;color:var(--muted)}
+  .footer{margin-top:40px;border-top:1px solid var(--rule);padding-top:18px;color:var(--muted);font-size:13.5px}
+  .footer a{color:var(--accent)}
+
+  @media print{ body{background:#fff;font-size:11.5pt} .wrap{padding:0;max-width:100%} figure,.shapes,.steps,.cols{break-inside:avoid} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">Reference card · Naming seventh chords</p>
+  <h1>Reading the Stack</h1>
+  <p class="sub">A seventh chord = a triad + one more third on top. In root position it's a <strong>snowman</strong>: four noteheads stacked in thirds, <strong>all on lines</strong> or <strong>all on spaces</strong>. Read the bottom note, skip up the alphabet — the chord spells itself.</p>
+
+  <h2>The two pictures</h2>
+  <div class="cols">
+    <div>
+      <figure>
+        <svg viewBox="0 0 220 122" role="img" aria-label="Treble staff with E G B D on the four lowest lines.">
+          <g stroke="#1f1d1a" stroke-width="1.1">
+            <line x1="16" y1="34" x2="204" y2="34"/><line x1="16" y1="46" x2="204" y2="46"/><line x1="16" y1="58" x2="204" y2="58"/><line x1="16" y1="70" x2="204" y2="70"/><line x1="16" y1="82" x2="204" y2="82"/>
+          </g>
+          <text class="clef" x="20" y="86" font-size="55">&#x1D11E;</text>
+          <ellipse cx="135" cy="82" rx="8.4" ry="6" transform="rotate(-20 135 82)" fill="#2e7d77"/>
+          <ellipse cx="135" cy="70" rx="8.4" ry="6" transform="rotate(-20 135 70)" fill="#2e7d77"/>
+          <ellipse cx="135" cy="58" rx="8.4" ry="6" transform="rotate(-20 135 58)" fill="#2e7d77"/>
+          <ellipse cx="135" cy="46" rx="8.4" ry="6" transform="rotate(-20 135 46)" fill="#2e7d77"/>
+          <g class="nlabel" font-size="13" fill="#2e7d77"><text x="163" y="86">E</text><text x="163" y="74">G</text><text x="163" y="62">B</text><text x="163" y="50">D</text></g>
+        </svg>
+        <figcaption><strong style="color:var(--teal)">All lines</strong> · E·G·B·D</figcaption>
+      </figure>
+    </div>
+    <div>
+      <figure>
+        <svg viewBox="0 0 220 122" role="img" aria-label="Treble staff with F A C E on the four spaces.">
+          <g stroke="#1f1d1a" stroke-width="1.1">
+            <line x1="16" y1="34" x2="204" y2="34"/><line x1="16" y1="46" x2="204" y2="46"/><line x1="16" y1="58" x2="204" y2="58"/><line x1="16" y1="70" x2="204" y2="70"/><line x1="16" y1="82" x2="204" y2="82"/>
+          </g>
+          <text class="clef" x="20" y="86" font-size="55">&#x1D11E;</text>
+          <ellipse cx="135" cy="76" rx="8.4" ry="6" transform="rotate(-20 135 76)" fill="#c8862e"/>
+          <ellipse cx="135" cy="64" rx="8.4" ry="6" transform="rotate(-20 135 64)" fill="#c8862e"/>
+          <ellipse cx="135" cy="52" rx="8.4" ry="6" transform="rotate(-20 135 52)" fill="#c8862e"/>
+          <ellipse cx="135" cy="40" rx="8.4" ry="6" transform="rotate(-20 135 40)" fill="#c8862e"/>
+          <g class="nlabel" font-size="13" fill="#c8862e"><text x="163" y="80">F</text><text x="163" y="68">A</text><text x="163" y="56">C</text><text x="163" y="44">E</text></g>
+        </svg>
+        <figcaption><strong style="color:var(--amber)">All spaces</strong> · F·A·C·E</figcaption>
+      </figure>
+    </div>
+  </div>
+  <p class="fine" style="text-align:center">Treble clef = a stylised <strong>G</strong>; its curl wraps the 2nd line from the bottom, so that line is <strong>G</strong>. Lines (bottom→top): <strong>E G B D F</strong>. Spaces: <strong>F A C E</strong>.</p>
+
+  <h2>Both directions — same skip, run each way</h2>
+  <div class="cols">
+    <div>
+      <p style="margin:4px 0;font-weight:600;color:var(--teal)">Read &nbsp;— staff → name</p>
+      <ol class="steps">
+        <li>See a <strong>four-high stack</strong> → it's a seventh chord.</li>
+        <li>Name the <strong>bottom</strong> note off the clef → that's the <strong>root</strong>.</li>
+        <li><strong>Alphabet-skip</strong> up ×3 for the 3rd, 5th, 7th.</li>
+      </ol>
+    </div>
+    <div>
+      <p style="margin:4px 0;font-weight:600;color:var(--accent)">Write — name → staff</p>
+      <ol class="steps">
+        <li>Put the <strong>root</strong> notehead on its line or space.</li>
+        <li>Root on a line → <strong>all lines</strong>; on a space → <strong>all spaces</strong>.</li>
+        <li>Fill the next three same-kind slots going up.</li>
+      </ol>
+    </div>
+  </div>
+
+  <h2>Alphabet-skip — the white-key skeletons</h2>
+  <div class="shapes">
+    <div class="chip"><div class="name">C</div><div class="notes">C·E·G·B</div><div class="kind">ledger ↓</div></div>
+    <div class="chip"><div class="name">D</div><div class="notes">D·F·A·C</div><div class="kind">spaces*</div></div>
+    <div class="chip"><div class="name">E</div><div class="notes">E·G·B·D</div><div class="kind">lines</div></div>
+    <div class="chip"><div class="name">F</div><div class="notes">F·A·C·E</div><div class="kind">spaces</div></div>
+    <div class="chip"><div class="name">G</div><div class="notes">G·B·D·F</div><div class="kind">lines</div></div>
+    <div class="chip"><div class="name">A</div><div class="notes">A·C·E·G</div><div class="kind">spaces</div></div>
+  </div>
+  <p class="fine">All naturals (no sharps/flats yet). On the keyboard each is <strong>every other white key</strong> — play it to check your reading. *D's root sits in the space just below the staff; C's root is middle C, on one ledger line below.</p>
+
+  <div class="big-rule">
+    <strong>The whole card in one line:</strong> four notes stacked tight → seventh chord; name the <strong>bottom</strong> note → root; <strong>skip up the alphabet</strong> for the rest — all on lines or all on spaces, never mixed.
+  </div>
+
+  <p class="fine">This card is the <strong>skeleton</strong> — letter-names only. What turns <span class="nlabel">C·E·G·B</span> into a <em>major-7</em>, a <em>dominant-7</em>, a <em>minor-7</em>, or a <em>diminished</em> chord is a matter of sharps and flats: that's Lesson 2 (the five qualities). Sources: <a href="https://musictheory.pugetsound.edu/mt21c/SeventhChordsIntroduction.html" style="color:var(--accent)">MT21C 8.1</a>, <a href="https://human.libretexts.org/Bookshelves/Music/Music_Theory/Open_Music_Theory_1e_(Wharton_and_Shaffer_Eds)/01:_Fundamentals/1.01:_Triads_and_Seventh_Chords" style="color:var(--accent)">Open Music Theory 1.1</a>.</p>
+
+  <p class="footer">
+    From Lesson 1 · <a href="../lessons/0001-stacked-in-thirds.html">Stacked in Thirds</a> · drill it both ways at <a href="https://www.musictheory.net/exercises/chord">musictheory.net</a><br>
+    Mission: name and read seventh chords on the staff — to understand the harmony.
+  </p>
+
+</div>
+</body>
+</html>

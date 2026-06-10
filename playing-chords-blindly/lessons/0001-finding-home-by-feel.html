@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 1 · Finding Home Without Looking</title>
+<style>
+  :root{
+    --paper:#fbfaf6;
+    --ink:#1f1d1a;
+    --muted:#6b6459;
+    --line:#e3ddd0;
+    --amber:#c8862e;
+    --amber-tint:#f4e6cc;
+    --teal:#2e7d77;
+    --teal-tint:#d3e9e6;
+    --rule:#d8d1c2;
+    --accent:#7a3e2f;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    line-height:1.62;
+    font-size:18px;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:64px 28px 96px}
+  .eyebrow{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    text-transform:uppercase;letter-spacing:.18em;font-size:12.5px;font-weight:700;
+    color:var(--accent);margin:0 0 14px;
+  }
+  h1{
+    font-size:42px;line-height:1.08;margin:0 0 18px;font-weight:600;letter-spacing:-.01em;
+  }
+  .lede{font-size:21px;line-height:1.5;color:#2c2823;margin:0 0 8px}
+  h2{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:14px;text-transform:uppercase;letter-spacing:.14em;font-weight:700;
+    color:var(--accent);margin:54px 0 6px;
+  }
+  h2 .num{color:var(--muted);margin-right:.5em}
+  h3{font-size:22px;margin:0 0 4px;font-weight:600}
+  p{margin:14px 0}
+  strong{font-weight:600}
+  a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+  .rule{height:1px;background:var(--rule);border:0;margin:40px 0}
+
+  .diagnosis{
+    background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);
+    border-radius:8px;padding:20px 24px;margin:28px 0;font-size:17px;
+  }
+  .diagnosis p{margin:8px 0}
+  .diagnosis .label{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin:0 0 6px;
+  }
+
+  figure{margin:26px 0;text-align:center}
+  figcaption{font-size:14.5px;color:var(--muted);margin-top:12px;line-height:1.45}
+  svg{max-width:100%;height:auto}
+
+  .anchor-rule{
+    display:flex;gap:16px;flex-wrap:wrap;margin:22px 0;
+  }
+  .anchor-rule .card{
+    flex:1 1 220px;border:1px solid var(--line);border-radius:8px;padding:16px 18px;background:#fff;
+  }
+  .anchor-rule .big{font-size:34px;font-weight:700;line-height:1}
+  .anchor-rule .cA .big{color:var(--amber)}
+  .anchor-rule .cF .big{color:var(--teal)}
+  .anchor-rule .desc{font-size:16px;margin-top:6px;color:#2c2823}
+
+  .callout{
+    background:var(--amber-tint);border-radius:8px;padding:16px 22px;margin:26px 0;
+    font-size:17px;
+  }
+  .callout strong{color:var(--accent)}
+
+  /* interactive quiz */
+  .quiz{
+    border:1px solid var(--line);border-radius:10px;background:#fff;padding:22px;margin:24px 0;
+  }
+  .quiz .prompt{font-size:18px;margin:0 0 14px}
+  #quizboard{display:block;margin:0 auto;cursor:pointer}
+  .quiz .status{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    margin-top:16px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:15px;
+  }
+  .quiz .feedback{font-weight:600;min-height:1.4em}
+  .quiz .feedback.ok{color:var(--teal)}
+  .quiz .feedback.no{color:#b23a2e}
+  .quiz .streak{color:var(--muted)}
+  .quiz button{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:14px;font-weight:600;
+    border:1px solid var(--line);background:var(--paper);color:var(--ink);
+    padding:7px 14px;border-radius:6px;cursor:pointer;
+  }
+  .quiz button:hover{background:#f0ece2}
+  .noscript{font-size:14.5px;color:var(--muted);font-style:italic}
+
+  /* drills */
+  .loop-banner{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:15px;letter-spacing:.02em;
+    background:#1f1d1a;color:#f7f3ea;border-radius:8px;padding:14px 20px;margin:22px 0;
+    text-align:center;
+  }
+  .loop-banner b{color:#f2c97d}
+  .drill{
+    border:1px solid var(--line);border-radius:10px;background:#fff;padding:20px 22px;margin:18px 0;
+  }
+  .drill .top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+  .badge{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;
+    letter-spacing:.06em;color:#fff;background:var(--accent);border-radius:20px;
+    padding:4px 12px;white-space:nowrap;
+  }
+  .drill .goal{
+    font-size:15px;color:var(--muted);margin-top:10px;
+    border-top:1px dashed var(--rule);padding-top:10px;
+  }
+  .drill .goal b{color:var(--ink);font-weight:600}
+
+  .teacher{
+    background:#fff;border:2px solid var(--accent);border-radius:10px;padding:22px 24px;margin:40px 0;
+  }
+  .teacher h3{color:var(--accent)}
+
+  .sources{font-size:14.5px;color:var(--muted);margin-top:14px}
+  .sources li{margin:5px 0}
+  .reopen{
+    font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-size:13.5px;
+    background:#1f1d1a;color:#f2c97d;padding:3px 8px;border-radius:5px;
+  }
+  .footer{margin-top:64px;border-top:1px solid var(--rule);padding-top:22px;color:var(--muted);font-size:14px}
+
+  @media print{
+    body{background:#fff;font-size:12pt}
+    .wrap{padding:0;max-width:100%}
+    .quiz, .teacher{break-inside:avoid}
+    .drill{break-inside:avoid}
+    a{color:var(--ink)}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">Lesson 1 · Playing chords without looking</p>
+  <h1>Finding Home Without Looking</h1>
+  <p class="lede">Your eyes belong on the lyrics, the chord chart, or the people you're playing for — not on your hands. Before you can change chords blind, your fingers need to know where they are on their own. This lesson hands them a map they can read by touch.</p>
+
+  <div class="diagnosis">
+    <p class="label">Why this lesson, and why first</p>
+    <p>You already build chords and use <strong>inversions</strong> to keep your hands in one zone — that's exactly right, and it means your problem is <em>not</em> big leaps. Your problem is <strong>orientation</strong>: the instant you stop looking, your hands lose track of where they are.</p>
+    <p>So we fix orientation first. Everything you want next — smooth changes, both hands together, eyes on the page — is built on top of this one skill.</p>
+  </div>
+
+  <h2><span class="num">1</span>The idea: a map you read with your fingers</h2>
+  <p>The black keys aren't spaced evenly. They come in <strong>groups of 2 and 3</strong>, with a gap between each group. That irregular pattern is the whole trick — it's what lets you know <em>where</em> you are without looking, the same way a reader's fingertip finds its place among braille dots.<sup><a href="#s1">1</a></sup></p>
+
+  <p>From that pattern you get two <strong>anchor notes</strong> you can find anywhere on the keyboard, purely by feel:</p>
+
+  <div class="anchor-rule">
+    <div class="card cA">
+      <div class="big">C</div>
+      <div class="desc">is the white key just to the <strong>left of any group of 2</strong> black keys.</div>
+    </div>
+    <div class="card cF">
+      <div class="big">F</div>
+      <div class="desc">is the white key just to the <strong>left of any group of 3</strong> black keys.</div>
+    </div>
+  </div>
+
+  <p>The gaps matter too. Between <strong>E–F</strong> and between <strong>B–C</strong> there is no black key — your fingertip feels a wider seam of white. Those seams are landmarks in their own right, not just empty space.<sup><a href="#s2">2</a></sup></p>
+
+  <figure>
+    <!-- Static keyboard map (prints fine without JS) -->
+    <svg viewBox="0 0 600 258" role="img" aria-label="Two octaves of a piano keyboard showing the groups of two and three black keys, with C and F highlighted as anchor notes and the E-F and B-C gaps marked.">
+      <!-- group brackets -->
+      <g font-family="Helvetica Neue, Arial, sans-serif" fill="#6b6459" font-size="12.5" font-weight="700">
+        <path d="M35 44 L35 38 L103 38 L103 44" fill="none" stroke="#6b6459" stroke-width="1.4"/>
+        <text x="69" y="28" text-anchor="middle">GROUP OF 2</text>
+        <path d="M161 44 L161 38 L271 38 L271 44" fill="none" stroke="#6b6459" stroke-width="1.4"/>
+        <text x="216" y="28" text-anchor="middle">GROUP OF 3</text>
+      </g>
+
+      <!-- white keys -->
+      <g stroke="#33302b" stroke-width="1.2">
+        <rect x="6"   y="50" width="42" height="170" fill="#f4e6cc"/> <!-- C0 -->
+        <rect x="48"  y="50" width="42" height="170" fill="#fff"/>    <!-- D0 -->
+        <rect x="90"  y="50" width="42" height="170" fill="#fff"/>    <!-- E0 -->
+        <rect x="132" y="50" width="42" height="170" fill="#d3e9e6"/> <!-- F0 -->
+        <rect x="174" y="50" width="42" height="170" fill="#fff"/>    <!-- G0 -->
+        <rect x="216" y="50" width="42" height="170" fill="#fff"/>    <!-- A0 -->
+        <rect x="258" y="50" width="42" height="170" fill="#fff"/>    <!-- B0 -->
+        <rect x="300" y="50" width="42" height="170" fill="#f4e6cc"/> <!-- C1 -->
+        <rect x="342" y="50" width="42" height="170" fill="#fff"/>    <!-- D1 -->
+        <rect x="384" y="50" width="42" height="170" fill="#fff"/>    <!-- E1 -->
+        <rect x="426" y="50" width="42" height="170" fill="#d3e9e6"/> <!-- F1 -->
+        <rect x="468" y="50" width="42" height="170" fill="#fff"/>    <!-- G1 -->
+        <rect x="510" y="50" width="42" height="170" fill="#fff"/>    <!-- A1 -->
+        <rect x="552" y="50" width="42" height="170" fill="#fff"/>    <!-- B1 -->
+      </g>
+
+      <!-- black keys -->
+      <g fill="#211f1c">
+        <rect x="35"  y="50" width="26" height="105" rx="2"/>
+        <rect x="77"  y="50" width="26" height="105" rx="2"/>
+        <rect x="161" y="50" width="26" height="105" rx="2"/>
+        <rect x="203" y="50" width="26" height="105" rx="2"/>
+        <rect x="245" y="50" width="26" height="105" rx="2"/>
+        <rect x="329" y="50" width="26" height="105" rx="2"/>
+        <rect x="371" y="50" width="26" height="105" rx="2"/>
+        <rect x="455" y="50" width="26" height="105" rx="2"/>
+        <rect x="497" y="50" width="26" height="105" rx="2"/>
+        <rect x="539" y="50" width="26" height="105" rx="2"/>
+      </g>
+
+      <!-- anchor letters -->
+      <g font-family="Iowan Old Style, Georgia, serif" font-size="20" font-weight="700" text-anchor="middle">
+        <text x="27"  y="206" fill="#a76a1f">C</text>
+        <text x="153" y="206" fill="#1f6b65">F</text>
+        <text x="321" y="206" fill="#a76a1f">C</text>
+        <text x="447" y="206" fill="#1f6b65">F</text>
+      </g>
+
+      <!-- gap markers (E–F and B–C seams) -->
+      <g fill="#b23a2e">
+        <path d="M132 232 l6 10 l-12 0 z"/>
+        <path d="M300 232 l6 10 l-12 0 z"/>
+        <path d="M426 232 l6 10 l-12 0 z"/>
+      </g>
+      <text x="300" y="255" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="12.5" fill="#b23a2e">▲ the gaps — no black key here, a seam you can feel</text>
+    </svg>
+    <figcaption>The same 12-key pattern repeats up and down the whole keyboard. Learn to feel <em>one</em> octave and you can feel all of them.</figcaption>
+  </figure>
+
+  <div class="callout">
+    <strong>The point:</strong> you don't memorise 88 keys. You feel one repeating shape — 2 black keys, then 3 — and read everything else off those two anchors. This is called <strong>keyboard sense</strong>, and it's the same proprioception athletes and dancers rely on: your brain's sense of where your body is without watching it.<sup><a href="#s1">1</a></sup>
+  </div>
+
+  <h2><span class="num">2</span>Read the map (here, in the browser)</h2>
+  <p>Train the recognition first, away from the piano. The glowing group below is either a 2 or a 3. <strong>Click the white key that is your anchor</strong> — C for a group of 2, F for a group of 3.</p>
+
+  <div class="quiz">
+    <p class="prompt" id="qprompt">Loading…</p>
+    <svg id="quizboard" viewBox="0 0 600 200" aria-label="Interactive keyboard. Click the anchor white key for the highlighted black-key group."></svg>
+    <noscript><p class="noscript">Enable JavaScript for the interactive trainer — or just go straight to the piano drills below.</p></noscript>
+    <div class="status">
+      <span class="feedback" id="qfeedback"></span>
+      <span class="streak" id="qstreak"></span>
+      <button id="qnext" type="button">Skip ›</button>
+    </div>
+  </div>
+  <p style="font-size:15px;color:var(--muted)">This trains the <em>mental</em> half — naming the anchor on sight. The real skill is <em>tactile</em>, and that's what the piano drills build.</p>
+
+  <hr class="rule">
+
+  <h2><span class="num">3</span>Take it to the piano</h2>
+  <p>Now the part that actually rewires your hands. Every drill runs the same tiny feedback loop, and you run it yourself:</p>
+
+  <div class="loop-banner">
+    <b>eyes closed</b> → do the thing → <b>open eyes to check</b> → adjust → repeat
+  </div>
+
+  <p>Do each drill with your <strong>left hand</strong> and your <strong>right hand</strong> separately — both need the map. The black-key landmarks work identically wherever your hand is.</p>
+
+  <div class="drill">
+    <div class="top"><h3>Feel the 2s and 3s</h3><span class="badge">~1 min</span></div>
+    <p>Eyes closed. Rest your fingertips <em>lightly</em> on top of the black keys — don't press. Slide slowly along and feel where two sit together, then three, then two, then three. Say it out loud: “two… three… two…”. Open your eyes and check you were right.</p>
+    <p class="goal"><b>Goal:</b> the 2–3 pattern becomes something you <b>feel</b>, not something you look at.</p>
+  </div>
+
+  <div class="drill">
+    <div class="top"><h3>Land on home</h3><span class="badge">~2 min</span></div>
+    <p>Eyes closed. Lift your hand right off the keys. Now find <strong>C</strong>: feel for a group of 2 and drop a finger on the white key just to its left. Play it. Open your eyes — did you land on C? Reset, and do the same for <strong>F</strong> (left of a group of 3). Then repeat, starting your hand from a different random spot each time.</p>
+    <p class="goal"><b>Goal:</b> find C and F cold, by feel, from anywhere — first try, most of the time.</p>
+  </div>
+
+  <div class="drill">
+    <div class="top"><h3>Land one chord blind</h3><span class="badge">~3 min</span></div>
+    <p>Pick one chord you know well, in a comfortable inversion — say C major. Eyes closed. Lift off. Find your anchor (C), then place your whole chord shape from there and play it. <strong>Before you open your eyes</strong>, notice the <strong>tactile fingerprint</strong>: which fingertips are resting on raised black keys, and which on flat white keys? That feeling is your built-in check. <em>Now</em> open your eyes and verify.</p>
+    <p class="goal"><b>Goal:</b> place a whole chord from an anchor, and learn to confirm it by feel before you ever look.</p>
+  </div>
+
+  <div class="drill">
+    <div class="top"><h3>The jump</h3><span class="badge">~3 min</span></div>
+    <p>The thing you came for. Choose <strong>two chords</strong> from a song you like — start with <strong>C and Am</strong>, then try <strong>C and F</strong>. Pick the inversion that keeps your hand in one place (you already do this), so the change is a <em>small</em> move and not a leap. Eyes closed. Play the first chord. Now change to the second by <strong>moving as little as possible</strong>: any finger on a note the two chords share stays glued down — that stationary finger is your anchor, the thing that stops you getting lost — and only the others slide, the shortest distance. Confirm the new fingerprint, then play. Move back. Slowly; open your eyes only to check, then close them again. <strong>Accuracy by feel first — speed comes later.</strong></p>
+    <p class="goal"><b>Goal:</b> change between two chords without looking, pivoting on the finger that stays put. This <em>is</em> the skill — just in miniature.</p>
+  </div>
+
+  <div class="callout">
+    <strong>Tactile fingerprint, defined:</strong> every chord shape has a unique feel — the pattern of which fingers sit on raised (black) keys versus flat (white) keys, and how far apart they sit. C major is all-white, flat under every finger; F major and D minor each have their own feel.<sup><a href="#s2">2</a></sup> Once you know a chord's fingerprint, you can confirm you've landed it correctly without a single glance.
+  </div>
+
+  <h2><span class="num">4</span>What “done” looks like — and what's next</h2>
+  <p>When you can run <strong>The jump</strong> with two chords, each hand separately, landing right most of the time without looking — you've got the foundation. That's a real, tangible win: you just changed chords blind.</p>
+  <p>Next lesson we'll chain a full four-chord pop progression (the C–G–Am–F kind that's under half of folk and pop) and then bring both hands together over it — moving toward the real target: <em>eyes on the lyric sheet, not the keys</em>.</p>
+
+  <div class="teacher">
+    <h3>I'm your teacher — ask me</h3>
+    <p style="margin-bottom:0">If a drill feels wrong, if your hand keeps missing in one direction (e.g. always landing a third too low), or if you want the drills built around a specific song you're learning — just tell me. Report back how the four drills went and I'll tune the next lesson to exactly where you are. That conversation is half the point.</p>
+  </div>
+
+  <hr class="rule">
+
+  <ol class="sources">
+    <li id="s1"><a href="https://www.key-notes.com/blog/playing-without-looking-at-one-s-hands">Playing Without Looking at One's Hands — Key-Notes</a> (proprioception, black-key landmarks).</li>
+    <li id="s2"><a href="https://onlinepianocurriculum.enovativepiano.com/developing-keyboard-sense/">Developing Keyboard Sense — eNovativePiano</a> (eyes-closed group drills; each key has a unique feel under the hand).</li>
+    <li><a href="https://playingkeys.com/play-piano-without-looking-at-the-keys/">How To Play Piano Without Looking At The Keys — Playing Keys</a> (the C/F anchor rule).</li>
+  </ol>
+
+  <p class="footer">
+    Reopen this lesson any time: <span class="reopen">xdg-open lessons/0001-finding-home-by-feel.html</span><br>
+    Mission: accompany singing with both hands, eyes off the keys.
+  </p>
+
+</div>
+
+<script>
+(function(){
+  var W=42, WH=170, BW=26, BH=105;
+  // white key index -> note letter (2 octaves, C major naturals)
+  var letters = ["C","D","E","F","G","A","B","C","D","E","F","G","A","B"];
+  // which white-key index each black key sits AFTER
+  var blackAfter = [0,1,3,4,5,7,8,10,11,12];
+  var svg = document.getElementById("quizboard");
+  if(!svg) return;
+  var NS = "http://www.w3.org/2000/svg";
+  var whiteEls = [], blackEls = {};
+
+  function rect(x,y,w,h,fill,stroke){
+    var r=document.createElementNS(NS,"rect");
+    r.setAttribute("x",x); r.setAttribute("y",y);
+    r.setAttribute("width",w); r.setAttribute("height",h);
+    r.setAttribute("fill",fill);
+    if(stroke){r.setAttribute("stroke",stroke);r.setAttribute("stroke-width","1.2");}
+    r.setAttribute("rx","2");
+    return r;
+  }
+
+  // white keys (start a touch lower to leave a hair of headroom)
+  var TOP = 16;
+  for(var i=0;i<14;i++){
+    var w = rect(6+i*W, TOP, W, WH, "#ffffff", "#33302b");
+    w.dataset.index = i;
+    w.style.transition = "fill .12s";
+    (function(idx){
+      w.addEventListener("click", function(){ answer(idx); });
+    })(i);
+    svg.appendChild(w);
+    whiteEls.push(w);
+  }
+  // black keys
+  blackAfter.forEach(function(i){
+    var b = rect(6+(i+1)*W-13, TOP, BW, BH, "#211f1c", null); // geometry matches the static map
+
+    b.dataset.after = i;
+    svg.appendChild(b);
+    blackEls[i] = b;
+  });
+
+  var promptEl = document.getElementById("qprompt");
+  var fbEl = document.getElementById("qfeedback");
+  var streakEl = document.getElementById("qstreak");
+  var nextBtn = document.getElementById("qnext");
+
+  var state = { correct:null, type:null, locked:false };
+  var streak = 0, best = 0;
+
+  function clearGlow(){
+    blackAfter.forEach(function(i){ blackEls[i].setAttribute("fill","#211f1c"); });
+    whiteEls.forEach(function(w){ w.setAttribute("fill","#ffffff"); });
+  }
+
+  // deterministic-enough variety without Math.random (which is unavailable here):
+  var seed = 0;
+  function pick(){ seed = (seed*1103515245 + 12345) & 0x7fffffff; return seed; }
+
+  function newQuestion(){
+    clearGlow();
+    state.locked = false;
+    fbEl.textContent = ""; fbEl.className = "feedback";
+    var oct = pick() % 2;            // 0 or 1
+    var isTwo = (pick() % 2) === 0;  // group of 2 or 3
+    var base = oct*7;
+    if(isTwo){
+      blackEls[base+0].setAttribute("fill","#c8862e");
+      blackEls[base+1].setAttribute("fill","#c8862e");
+      state.correct = base+0;  // C
+      state.type = "2";
+    } else {
+      blackEls[base+3].setAttribute("fill","#2e7d77");
+      blackEls[base+4].setAttribute("fill","#2e7d77");
+      blackEls[base+5].setAttribute("fill","#2e7d77");
+      state.correct = base+3;  // F
+      state.type = "3";
+    }
+    promptEl.innerHTML = "The glowing group has <strong>"+state.type+"</strong> black keys. Click the white key just to its <strong>left</strong> — your anchor.";
+  }
+
+  function answer(idx){
+    if(state.locked) return;
+    state.locked = true;
+    var note = letters[idx];
+    if(idx === state.correct){
+      whiteEls[idx].setAttribute("fill","#cfe9cf");
+      streak++; best = Math.max(best,streak);
+      var msg = "✓ Yes — that's "+note+", left of the group of "+state.type+".";
+      if(streak>=6) msg += "  You can read the map — now take it to the keys, eyes closed.";
+      fbEl.textContent = msg; fbEl.className = "feedback ok";
+      setTimeout(newQuestion, 1100);
+    } else {
+      whiteEls[idx].setAttribute("fill","#f3d2cc");
+      whiteEls[state.correct].setAttribute("fill","#cfe9cf");
+      streak = 0;
+      fbEl.textContent = "✗ That's "+note+". The anchor is "+letters[state.correct]+" (glowing green) — left of the group of "+state.type+".";
+      fbEl.className = "feedback no";
+      setTimeout(newQuestion, 1700);
+    }
+    streakEl.textContent = "Streak: "+streak+(best?"   ·   Best: "+best:"");
+  }
+
+  nextBtn.addEventListener("click", newQuestion);
+  newQuestion();
+})();
+</script>
+</body>
+</html>

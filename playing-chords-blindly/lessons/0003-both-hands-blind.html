@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 3 · Both Hands, Eyes Closed</title>
+<style>
+  :root{
+    --paper:#fbfaf6;
+    --ink:#1f1d1a;
+    --muted:#6b6459;
+    --line:#e3ddd0;
+    --amber:#c8862e;
+    --amber-tint:#f4e6cc;
+    --teal:#2e7d77;
+    --teal-tint:#d3e9e6;
+    --rule:#d8d1c2;
+    --accent:#7a3e2f;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    line-height:1.62;
+    font-size:18px;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:64px 28px 96px}
+  .eyebrow{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    text-transform:uppercase;letter-spacing:.18em;font-size:12.5px;font-weight:700;
+    color:var(--accent);margin:0 0 14px;
+  }
+  h1{
+    font-size:42px;line-height:1.08;margin:0 0 18px;font-weight:600;letter-spacing:-.01em;
+  }
+  .lede{font-size:21px;line-height:1.5;color:#2c2823;margin:0 0 8px}
+  h2{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:14px;text-transform:uppercase;letter-spacing:.14em;font-weight:700;
+    color:var(--accent);margin:54px 0 6px;
+  }
+  h2 .num{color:var(--muted);margin-right:.5em}
+  h3{font-size:22px;margin:0 0 4px;font-weight:600}
+  p{margin:14px 0}
+  strong{font-weight:600}
+  a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+  .rule{height:1px;background:var(--rule);border:0;margin:40px 0}
+
+  .diagnosis{
+    background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);
+    border-radius:8px;padding:20px 24px;margin:28px 0;font-size:17px;
+  }
+  .diagnosis p{margin:8px 0}
+  .diagnosis .label{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin:0 0 6px;
+  }
+
+  figure{margin:26px 0;text-align:center}
+  figcaption{font-size:14.5px;color:var(--muted);margin-top:12px;line-height:1.45}
+  svg{max-width:100%;height:auto}
+
+  .callout{
+    background:var(--amber-tint);border-radius:8px;padding:16px 22px;margin:26px 0;
+    font-size:17px;
+  }
+  .callout strong{color:var(--accent)}
+
+  .hands{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}
+  .hands .card{
+    flex:1 1 300px;border:1px solid var(--line);border-radius:10px;background:#fff;padding:18px 20px;
+  }
+  .hands .tag{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:11.5px;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;margin:0 0 6px;
+  }
+  .hands .rh .tag{color:var(--amber)}
+  .hands .lh .tag{color:var(--teal)}
+  .hands p{margin:6px 0;font-size:16px}
+
+  /* tables */
+  .vtable{width:100%;border-collapse:collapse;margin:22px 0;font-size:16.5px}
+  .vtable th,.vtable td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  .vtable th{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;text-transform:uppercase;
+    letter-spacing:.1em;color:var(--accent);font-weight:700;
+  }
+  .vtable .chg{font-weight:600;white-space:nowrap}
+  .vtable .stay{color:var(--teal);font-weight:600}
+  .vtable .none{color:#b23a2e;font-weight:600}
+  .vtable .mv{color:var(--muted)}
+  .vtable .land{color:var(--teal)}
+
+  /* interactive trainer */
+  .quiz{
+    border:1px solid var(--line);border-radius:10px;background:#fff;padding:22px;margin:24px 0;
+  }
+  .quiz .prompt{font-size:18px;margin:0 0 14px}
+  #bsboard{display:block;margin:0 auto;cursor:pointer}
+  .quiz .status{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    margin-top:16px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:15px;
+  }
+  .quiz .feedback{font-weight:600;min-height:1.4em;flex:1 1 320px}
+  .quiz .feedback.ok{color:var(--teal)}
+  .quiz .feedback.no{color:#b23a2e}
+  .quiz .streak{color:var(--muted)}
+  .quiz button{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:14px;font-weight:600;
+    border:1px solid var(--line);background:var(--paper);color:var(--ink);
+    padding:7px 14px;border-radius:6px;cursor:pointer;margin-left:6px;
+  }
+  .quiz button:hover{background:#f0ece2}
+  .quiz button:disabled{opacity:.5;cursor:default}
+  .noscript{font-size:14.5px;color:var(--muted);font-style:italic}
+
+  /* drills */
+  .loop-banner{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:15px;letter-spacing:.02em;
+    background:#1f1d1a;color:#f7f3ea;border-radius:8px;padding:14px 20px;margin:22px 0;
+    text-align:center;
+  }
+  .loop-banner b{color:#f2c97d}
+  .drill{
+    border:1px solid var(--line);border-radius:10px;background:#fff;padding:20px 22px;margin:18px 0;
+  }
+  .drill .top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+  .badge{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;
+    letter-spacing:.06em;color:#fff;background:var(--accent);border-radius:20px;
+    padding:4px 12px;white-space:nowrap;
+  }
+  .drill .goal{
+    font-size:15px;color:var(--muted);margin-top:10px;
+    border-top:1px dashed var(--rule);padding-top:10px;
+  }
+  .drill .goal b{color:var(--ink);font-weight:600}
+
+  .teacher{
+    background:#fff;border:2px solid var(--accent);border-radius:10px;padding:22px 24px;margin:40px 0;
+  }
+  .teacher h3{color:var(--accent)}
+
+  .sources{font-size:14.5px;color:var(--muted);margin-top:14px}
+  .sources li{margin:5px 0}
+  .reopen{
+    font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-size:13.5px;
+    background:#1f1d1a;color:#f2c97d;padding:3px 8px;border-radius:5px;
+  }
+  .footer{margin-top:64px;border-top:1px solid var(--rule);padding-top:22px;color:var(--muted);font-size:14px}
+
+  @media print{
+    body{background:#fff;font-size:12pt}
+    .wrap{padding:0;max-width:100%}
+    .quiz, .teacher{break-inside:avoid}
+    .drill{break-inside:avoid}
+    a{color:var(--ink)}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">Lesson 3 · Playing chords without looking</p>
+  <h1>Both Hands, Eyes Closed</h1>
+  <p class="lede">In Lesson 2 you ran the four-chord loop blind with one hand, then drilled the other on its own. Now we put them together: the right hand keeps playing those chords, and the left hand drops a single <em>bass note</em> underneath — C&nbsp;–&nbsp;G&nbsp;–&nbsp;Am&nbsp;–&nbsp;F, both hands, eyes off the keys. This is the real shape of accompaniment, and the last step before your eyes move to the lyric sheet.</p>
+
+  <div class="diagnosis">
+    <p class="label">Why this lesson, and why now</p>
+    <p>Last lesson you got each hand <strong>solid and separate</strong> on the loop — and that was on purpose. The reliable way to play hands together is to first know each hand well enough to run it without thinking, almost on autopilot; then the brain has room to coordinate the two.<sup><a href="#s1">1</a></sup> You're there.</p>
+    <p>So this lesson adds exactly one new thing: a <strong>left-hand bass note</strong> under the chords, and the skill of keeping <em>both</em> hands oriented at once without looking. Each hand already has its own handrail — the trick is trusting both at the same time.</p>
+  </div>
+
+  <h2><span class="num">1</span>The idea: each hand keeps its own handrail</h2>
+  <p>You already have a handrail in each hand — you built them in the last two lessons. Bringing the hands together doesn't replace them; it asks you to lean on <em>both at once</em>.</p>
+
+  <div class="hands">
+    <div class="card rh">
+      <p class="tag">Right hand — the chord</p>
+      <p>Plays the same four shapes as Lesson 2: <strong>C E G · B D G · C E A · C F A</strong>. Its handrail is the <strong>glued finger</strong> — the shared note it rides through three of the four changes — and the uniform <strong>block-shift</strong> on the fourth. Nothing here changes.</p>
+    </div>
+    <div class="card lh">
+      <p class="tag">Left hand — the bass</p>
+      <p>Plays one note: the <strong>root</strong> of each chord — <strong>C, G, A, F</strong> — about an octave below the right hand. A single root per chord is the foundational accompaniment pattern, the one every other left-hand style is built on.<sup><a href="#s2">2</a></sup> Its handrail is the <strong>black-key landmark</strong> from Lesson 1.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>The whole new skill in one sentence:</strong> the right hand navigates by the glued finger; the left hand navigates by the black-key groups; and you hold both senses in mind at the same time, eyes closed. That's all Lesson 3 is — two handrails you already know, gripped together.
+  </div>
+
+  <h2><span class="num">2</span>The left-hand map: four roots by feel</h2>
+  <p>The left hand only ever plays four notes — the roots <strong>C&nbsp;→&nbsp;G&nbsp;→&nbsp;A&nbsp;→&nbsp;F</strong>, looping back to C. The beautiful part: each one sits at a spot you can already find by touch, straight from Lesson 1. Two live at the <em>left edge</em> of a black-key group; the other two are <em>tucked between</em> the black keys of the three-group.</p>
+
+  <figure>
+    <svg viewBox="0 0 556 188" role="img" aria-label="Four small one-octave keyboards showing the left-hand bass roots. C is the white key at the left edge of the two-black group; G is tucked between the first two keys of the three-black group; A is tucked between the last two keys of the three-black group; F is at the left edge of the three-black group. Arrows show the bass moving up a fifth, up a step, then down a third, and finally down a fourth back to C.">
+      <!-- ===== MINI 0: chord C, bass root C ===== -->
+      <g stroke="#33302b" stroke-width="1.1">
+        <rect x="12" y="46" width="14" height="104" fill="#fff"/><rect x="26" y="46" width="14" height="104" fill="#fff"/><rect x="40" y="46" width="14" height="104" fill="#fff"/><rect x="54" y="46" width="14" height="104" fill="#fff"/><rect x="68" y="46" width="14" height="104" fill="#fff"/><rect x="82" y="46" width="14" height="104" fill="#fff"/><rect x="96" y="46" width="14" height="104" fill="#fff"/><rect x="110" y="46" width="14" height="104" fill="#fff"/>
+      </g>
+      <g fill="#211f1c"><rect x="21.5" y="46" width="9" height="64" rx="1.5"/><rect x="35.5" y="46" width="9" height="64" rx="1.5"/><rect x="63.5" y="46" width="9" height="64" rx="1.5"/><rect x="77.5" y="46" width="9" height="64" rx="1.5"/><rect x="91.5" y="46" width="9" height="64" rx="1.5"/></g>
+      <text x="68" y="34" text-anchor="middle" font-family="Iowan Old Style,Georgia,serif" font-size="16" font-weight="700" fill="#1f1d1a">C</text>
+      <circle cx="19" cy="124" r="6.5" fill="#2e7d77"/>
+      <text x="19" y="170" text-anchor="middle" font-family="Iowan Old Style,Georgia,serif" font-size="13" font-weight="700" fill="#1f6b65">C</text>
+
+      <text x="138" y="118" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="22" fill="#cfc6b4">›</text>
+      <text x="138" y="30" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#6b6459">↑ 5th</text>
+
+      <!-- ===== MINI 1: chord G, bass root G ===== -->
+      <g stroke="#33302b" stroke-width="1.1">
+        <rect x="152" y="46" width="14" height="104" fill="#fff"/><rect x="166" y="46" width="14" height="104" fill="#fff"/><rect x="180" y="46" width="14" height="104" fill="#fff"/><rect x="194" y="46" width="14" height="104" fill="#fff"/><rect x="208" y="46" width="14" height="104" fill="#fff"/><rect x="222" y="46" width="14" height="104" fill="#fff"/><rect x="236" y="46" width="14" height="104" fill="#fff"/><rect x="250" y="46" width="14" height="104" fill="#fff"/>
+      </g>
+      <g fill="#211f1c"><rect x="161.5" y="46" width="9" height="64" rx="1.5"/><rect x="175.5" y="46" width="9" height="64" rx="1.5"/><rect x="203.5" y="46" width="9" height="64" rx="1.5"/><rect x="217.5" y="46" width="9" height="64" rx="1.5"/><rect x="231.5" y="46" width="9" height="64" rx="1.5"/></g>
+      <text x="208" y="34" text-anchor="middle" font-family="Iowan Old Style,Georgia,serif" font-size="16" font-weight="700" fill="#1f1d1a">G</text>
+      <circle cx="215" cy="124" r="6.5" fill="#2e7d77"/>
+      <text x="215" y="170" text-anchor="middle" font-family="Iowan Old Style,Georgia,serif" font-size="13" font-weight="700" fill="#1f6b65">G</text>
+
+      <text x="278" y="118" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="22" fill="#cfc6b4">›</text>
+      <text x="278" y="30" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#6b6459">↑ step</text>
+
+      <!-- ===== MINI 2: chord Am, bass root A ===== -->
+      <g stroke="#33302b" stroke-width="1.1">
+        <rect x="292" y="46" width="14" height="104" fill="#fff"/><rect x="306" y="46" width="14" height="104" fill="#fff"/><rect x="320" y="46" width="14" height="104" fill="#fff"/><rect x="334" y="46" width="14" height="104" fill="#fff"/><rect x="348" y="46" width="14" height="104" fill="#fff"/><rect x="362" y="46" width="14" height="104" fill="#fff"/><rect x="376" y="46" width="14" height="104" fill="#fff"/><rect x="390" y="46" width="14" height="104" fill="#fff"/>
+      </g>
+      <g fill="#211f1c"><rect x="301.5" y="46" width="9" height="64" rx="1.5"/><rect x="315.5" y="46" width="9" height="64" rx="1.5"/><rect x="343.5" y="46" width="9" height="64" rx="1.5"/><rect x="357.5" y="46" width="9" height="64" rx="1.5"/><rect x="371.5" y="46" width="9" height="64" rx="1.5"/></g>
+      <text x="348" y="34" text-anchor="middle" font-family="Iowan Old Style,Georgia,serif" font-size="16" font-weight="700" fill="#1f1d1a">Am</text>
+      <circle cx="369" cy="124" r="6.5" fill="#2e7d77"/>
+      <text x="369" y="170" text-anchor="middle" font-family="Iowan Old Style,Georgia,serif" font-size="13" font-weight="700" fill="#1f6b65">A</text>
+
+      <text x="418" y="118" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="22" fill="#cfc6b4">›</text>
+      <text x="418" y="30" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#6b6459">↓ 3rd</text>
+
+      <!-- ===== MINI 3: chord F, bass root F ===== -->
+      <g stroke="#33302b" stroke-width="1.1">
+        <rect x="432" y="46" width="14" height="104" fill="#fff"/><rect x="446" y="46" width="14" height="104" fill="#fff"/><rect x="460" y="46" width="14" height="104" fill="#fff"/><rect x="474" y="46" width="14" height="104" fill="#fff"/><rect x="488" y="46" width="14" height="104" fill="#fff"/><rect x="502" y="46" width="14" height="104" fill="#fff"/><rect x="516" y="46" width="14" height="104" fill="#fff"/><rect x="530" y="46" width="14" height="104" fill="#fff"/>
+      </g>
+      <g fill="#211f1c"><rect x="441.5" y="46" width="9" height="64" rx="1.5"/><rect x="455.5" y="46" width="9" height="64" rx="1.5"/><rect x="483.5" y="46" width="9" height="64" rx="1.5"/><rect x="497.5" y="46" width="9" height="64" rx="1.5"/><rect x="511.5" y="46" width="9" height="64" rx="1.5"/></g>
+      <text x="488" y="34" text-anchor="middle" font-family="Iowan Old Style,Georgia,serif" font-size="16" font-weight="700" fill="#1f1d1a">F</text>
+      <circle cx="481" cy="124" r="6.5" fill="#2e7d77"/>
+      <text x="481" y="170" text-anchor="middle" font-family="Iowan Old Style,Georgia,serif" font-size="13" font-weight="700" fill="#1f6b65">F</text>
+    </svg>
+    <figcaption>The left-hand bass, one octave below the chords. <strong>C</strong> and <strong>F</strong> sit at the <em>left edge</em> of a group (the 2-group and the 3-group); <strong>G</strong> and <strong>A</strong> are <em>tucked between</em> the black keys of the 3-group. After F it loops back to C — <strong>down a fourth</strong>.</figcaption>
+  </figure>
+
+  <table class="vtable">
+    <thead><tr><th>Chord</th><th>Bass root</th><th>How it feels under the finger</th></tr></thead>
+    <tbody>
+      <tr><td class="chg">C</td><td class="land">C</td><td>White key just <strong>left of the 2-black group</strong> — your Lesson-1 anchor.</td></tr>
+      <tr><td class="chg">G</td><td class="land">G</td><td><strong>Tucked between the first two</strong> keys of the 3-black group — raised keys on both sides.</td></tr>
+      <tr><td class="chg">Am</td><td class="land">A</td><td><strong>Tucked between the last two</strong> keys of the 3-black group — one white key up from G.</td></tr>
+      <tr><td class="chg">F</td><td class="land">F</td><td>White key just <strong>left of the 3-black group</strong> — your other Lesson-1 anchor.</td></tr>
+    </tbody>
+  </table>
+  <p>Play it with whatever left-hand finger feels steadiest landing a single note — the <strong>thumb&nbsp;(1)</strong> aims well; the <strong>pinky&nbsp;(5)</strong> gives a deeper, more planted bass. Pick one and keep it. The point isn't the finger — it's landing the note by the <em>landmark</em>, not by sight.</p>
+
+  <h2><span class="num">3</span>How the hands fit together</h2>
+  <p>Here's the move that makes both-hands-blind feel possible. Look at what each hand is doing at every change:</p>
+
+  <table class="vtable">
+    <thead><tr><th>Change</th><th>Right hand (the chord)</th><th>Left hand (the bass)</th></tr></thead>
+    <tbody>
+      <tr><td class="chg">C → G</td><td class="stay">glued finger on G — pivots, nearly still</td><td class="mv">leaps <strong>up a 5th</strong> to G</td></tr>
+      <tr><td class="chg">G → Am</td><td class="none">no handrail — shifts up one white key</td><td class="mv">steps <strong>up one</strong> to A</td></tr>
+      <tr><td class="chg">Am → F</td><td class="stay">two glued fingers (C&nbsp;&amp;&nbsp;A) — barely moves</td><td class="mv">drops <strong>down a 3rd</strong> to F</td></tr>
+      <tr><td class="chg">F → C</td><td class="stay">glued finger on C — pivots, nearly still</td><td class="mv">drops <strong>down a 4th</strong> to C</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>Let the still hand be your anchor.</strong> At three of the four changes — <strong>C→G</strong>, <strong>Am→F</strong>, <strong>F→C</strong> — your right hand barely moves: it pivots on a glued finger or holds two. So at those moments, treat the right hand as the <em>fixed point</em> and let the left hand measure its leap against it. Only one change, <strong>G→Am</strong>, asks both hands to travel — and there they travel the <em>same</em> way: <strong>both go up one white key, together</strong>. That shared little nudge upward is its own cue. So you're never asking both hands to make a big, independent move at the same time — there's always either a still hand to lean on, or a matching motion to ride.
+  </div>
+
+  <h2><span class="num">4</span>Train the bass map here</h2>
+  <p>Before the piano, drill the left-hand map by feel. For each change, the keys are blank — <strong>no labels</strong>. Click the white key where the <em>left-hand bass</em> of the next chord lands, finding it by the black-key groups alone. You'll get the landmark, the bass move, and what the right hand is doing, every time.</p>
+
+  <div class="quiz">
+    <p class="prompt" id="bsprompt">Loading…</p>
+    <svg id="bsboard" viewBox="0 0 476 220" aria-label="Interactive one-octave keyboard with blank keys. Click the white key where the left-hand bass root lands."></svg>
+    <noscript><p class="noscript">Enable JavaScript for the bass-map trainer — or go straight to the piano drills below.</p></noscript>
+    <div class="status">
+      <span class="feedback" id="bsfeedback"></span>
+      <span class="streak" id="bsstreak"></span>
+      <span>
+        <button id="bsnext" type="button">Skip ›</button>
+      </span>
+    </div>
+  </div>
+  <p style="font-size:15px;color:var(--muted)">This trains the <em>map</em> — which key the bass lands on, and how to find it by touch. The real skill is tactile, and that's the piano drills below.</p>
+
+  <hr class="rule">
+
+  <h2><span class="num">5</span>Take it to the piano</h2>
+  <p>Same feedback loop as before — and it only works because you remove sight:</p>
+
+  <div class="loop-banner">
+    <b>eyes closed</b> → do the thing → <b>open eyes to check</b> → adjust → repeat
+  </div>
+
+  <p>Expect bringing the hands together to feel, at first, like starting over — that's normal, and it's brief, because each hand already knows its part.<sup><a href="#s1">1</a></sup> Go slowly. Clean landings first; speed never.</p>
+
+  <div class="drill">
+    <div class="top"><h3>The bass alone, blind</h3><span class="badge">~2 min</span></div>
+    <p>Left hand only. Eyes closed. Find <strong>C</strong> (left of the 2-group), then play the bass loop: <strong>C → G → A → F → C</strong>, using the landmarks — G and A tucked in the 3-group, F at its left edge. Open your eyes at the end of each lap to check. Feel the shape of the journey: a leap up, a small step up, then settling back down.</p>
+    <p class="goal"><b>Goal:</b> the four roots landed by feel, eyes closed, without hunting for them.</p>
+  </div>
+
+  <div class="drill">
+    <div class="top"><h3>One change, both hands, slow</h3><span class="badge">~4 min</span></div>
+    <p>Now together — but one change at a time, and <em>lean on the still hand</em>. Start with the three that give you one: <strong>C→G</strong> (right hand glues G, left hand leaps up a 5th), <strong>Am→F</strong> (right hand holds C&nbsp;&amp;&nbsp;A, left hand drops a 3rd), <strong>F→C</strong> (right hand glues C, left hand drops a 4th). Eyes closed: play the first chord-and-bass, then change — keep the right hand's glued finger pressed as your anchor while the left hand makes its move. Open eyes, check. Do each change a few times.</p>
+    <p class="goal"><b>Goal:</b> each of the three "still-hand" changes landed cleanly in both hands, eyes closed, with the right-hand anchor never lifting.</p>
+  </div>
+
+  <div class="drill">
+    <div class="top"><h3>The one where both hands move</h3><span class="badge">~2 min</span></div>
+    <p><strong>G → Am</strong> is the only change with no still hand — so make the two hands agree. Eyes closed. Play <strong>G</strong> (chord B&nbsp;D&nbsp;G, bass G). Move <em>everything</em> up exactly <strong>one white key</strong> at the same instant: the right-hand shape block-shifts up one, the left-hand bass steps up one to A. Both hands rise together, the same distance. If it feels lopsided, one hand overshot — reset and move them as a single gesture. Open eyes, check.</p>
+    <p class="goal"><b>Goal:</b> G→Am as one unified up-a-step move in both hands, landing clean and level without looking.</p>
+  </div>
+
+  <div class="drill">
+    <div class="top"><h3>Round the loop, both hands, blind</h3><span class="badge">~5 min</span></div>
+    <p>The payoff. <strong>C → G → Am → F → C</strong>, both hands, eyes closed, slowly. Name the move as you go: <em>"glue&nbsp;G, bass&nbsp;leaps&nbsp;up… both&nbsp;up&nbsp;one… glue&nbsp;C&nbsp;&amp;&nbsp;A, bass&nbsp;drops… glue&nbsp;C, bass&nbsp;drops."</em> Open your eyes only at the end of each full lap to check, then close and go again. When two or three laps land clean, try humming or saying the chord names aloud while you play — a first taste of doing something else while your hands run on their own.</p>
+    <p class="goal"><b>Goal:</b> four laps of the loop, both hands, no looking mid-lap, every chord and bass landing right. That's a complete two-handed accompaniment, played blind.</p>
+  </div>
+
+  <h2><span class="num">6</span>What "done" looks like — and what's next</h2>
+  <p>When you can run the loop a few times round with <em>both</em> hands, eyes closed, landing clean — you've built the actual engine of accompaniment: a bass and a chord, moving together, with your eyes free. Everything from here is about <em>where those eyes go</em>.</p>
+  <p>Next lesson is the mission itself: <strong>eyes on a lyric-and-chord sheet</strong> while your hands run this loop on their own. We'll build straight on top of these exact shapes and this exact bass — no new notes, just your gaze finally lifting off the keys and onto the page.</p>
+
+  <div class="teacher">
+    <h3>I'm your teacher — ask me</h3>
+    <p style="margin-bottom:0">Tell me how it went. Does the left-hand <strong>leap up to G</strong> keep overshooting? Do the hands fall out of sync at a particular change? Is the bass too high or too low against the chord for your ear? Want this in a different key, or set to a specific song you're itching to play? Report back and I'll tune Lesson 4 to exactly where you land. (And if you'd ever like other eyes on a stubborn change, a short clip on <a href="https://www.reddit.com/r/piano/">r/piano</a> gets thoughtful answers — only if you're up for it.)</p>
+  </div>
+
+  <hr class="rule">
+
+  <ol class="sources">
+    <li id="s1"><a href="https://www.hoffmanacademy.com/blog/how-to-play-with-both-hands-for-beginning-pianists">How to Play Piano with Both Hands for Beginners — Hoffman Academy</a> (get each hand solid and near-automatic first, then combine; expect hands-together to feel like a fresh start). See also <a href="https://www.teachpianotoday.com/2016/07/13/7-ways-piano-students-can-improve-their-hands-together-coordination/">7 Ways to Improve "Hands Together" Coordination — Teach Piano Today</a>.</li>
+    <li id="s2"><a href="https://www.dummies.com/article/academics-the-arts/music/instruments/piano/great-left-hand-accompaniment-patterns-for-the-piano-or-keyboard-153052/">Great Left-Hand Accompaniment Patterns — dummies</a> (the single root note per chord is the most basic left-hand pattern, the foundation the others build on; root-then-fifth/octave is the next step).</li>
+  </ol>
+
+  <p class="footer">
+    Reopen this lesson any time: <span class="reopen">xdg-open lessons/0003-both-hands-blind.html</span><br>
+    Quick-reference card: <span class="reopen">xdg-open reference/0002-both-hands-loop-map.html</span><br>
+    Mission: accompany singing with both hands, eyes off the keys.
+  </p>
+
+</div>
+
+<script>
+(function(){
+  var W=58, TOP=18, WH=176, BW=34, BH=110;
+  var noteName=["C","D","E","F","G","A","B","C"];
+  var blackAfter=[0,1,3,4,5];
+  var svg=document.getElementById("bsboard");
+  if(!svg) return;
+  var NS="http://www.w3.org/2000/svg";
+  function el(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);return e;}
+
+  var whiteEls=[], labelEls={};
+  for(var i=0;i<8;i++){
+    var w=el("rect",{x:6+i*W,y:TOP,width:W,height:WH,fill:"#ffffff",stroke:"#33302b","stroke-width":1.2,rx:2});
+    w.style.transition="fill .12s";
+    (function(idx){ w.addEventListener("click",function(){ onClick(idx); }); })(i);
+    svg.appendChild(w); whiteEls.push(w);
+  }
+  blackAfter.forEach(function(a){
+    svg.appendChild(el("rect",{x:6+(a+1)*W-BW/2,y:TOP,width:BW,height:BH,fill:"#211f1c",rx:2}));
+  });
+
+  // loop changes; root = white-key index of the bass of the SECOND chord
+  var TRANS=[
+    {from:"C",  to:"G",  root:4, rint:"leaps up a fifth",        rh:"the right hand rides its glued finger on G",                  land:"tucked between the first two keys of the three-black group", both:false},
+    {from:"G",  to:"Am", root:5, rint:"steps up one white key",  rh:"the right hand has no handrail, so its whole shape shifts up one white key", land:"tucked between the last two keys of the three-black group", both:true},
+    {from:"Am", to:"F",  root:3, rint:"drops down a third",      rh:"the right hand holds two glued fingers, C and A, barely moving", land:"at the left edge of the three-black group", both:false},
+    {from:"F",  to:"C",  root:0, rint:"drops down a fourth",     rh:"the right hand rides its glued finger on C",                  land:"at the left edge of the two-black group", both:false}
+  ];
+
+  var promptEl=document.getElementById("bsprompt");
+  var fbEl=document.getElementById("bsfeedback");
+  var streakEl=document.getElementById("bsstreak");
+  var nextBtn=document.getElementById("bsnext");
+
+  var ti=0, locked=false, streak=0, best=0;
+
+  function fill(i,c){ whiteEls[i].setAttribute("fill",c); }
+  function clearLabels(){ for(var k in labelEls){ svg.removeChild(labelEls[k]); } labelEls={}; }
+  function addLabel(i,txt,color){
+    var t=el("text",{x:6+i*W+W/2,y:TOP+WH-20,"text-anchor":"middle",
+      "font-family":"Iowan Old Style, Georgia, serif","font-size":21,"font-weight":700,fill:color});
+    t.textContent=txt; t.style.pointerEvents="none"; svg.appendChild(t); labelEls[i]=t;
+  }
+  function cur(){ return TRANS[ti % TRANS.length]; }
+
+  function render(){
+    locked=false;
+    fbEl.textContent=""; fbEl.className="feedback";
+    clearLabels();
+    for(var i=0;i<8;i++) fill(i,"#ffffff");
+    var c=cur();
+    promptEl.innerHTML="<strong>"+c.from+" → "+c.to+"</strong> &nbsp;— click the white key where the <strong>left-hand bass</strong> of "+c.to+" lands. Find it by the black-key groups (the keys are blank on purpose).";
+  }
+
+  function onClick(i){
+    if(locked) return;
+    locked=true;
+    var c=cur();
+    var rn=noteName[c.root];
+    if(i===c.root){
+      fill(i,"#cfe9cf"); addLabel(i,rn,"#1f6b65");
+      streak++; best=Math.max(best,streak);
+      var msg="✓ "+rn+" — "+c.land+". The bass "+c.rint+"; "+c.rh+".";
+      if(c.both) msg+=" Both hands move up one white key here — ride them together.";
+      if(streak>=8) msg+="  You know the bass map cold — take it to the keys, eyes closed.";
+      fbEl.textContent=msg; fbEl.className="feedback ok";
+      ti++; setTimeout(render,1700);
+    } else {
+      fill(i,"#f3d2cc"); addLabel(i,noteName[i],"#b23a2e");
+      fill(c.root,"#cfe9cf"); addLabel(c.root,rn,"#1f6b65");
+      streak=0;
+      fbEl.textContent="✗ The bass of "+c.to+" is "+rn+" (green) — "+c.land+".";
+      fbEl.className="feedback no";
+      ti++; setTimeout(render,2500);
+    }
+    streakEl.textContent="Streak: "+streak+(best?"   ·   Best: "+best:"");
+  }
+
+  nextBtn.addEventListener("click",function(){ if(locked) return; ti++; render(); });
+  render();
+})();
+</script>
+</body>
+</html>

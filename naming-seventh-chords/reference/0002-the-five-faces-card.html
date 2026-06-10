@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reference · The Five Faces — Seventh-Chord Qualities</title>
+<style>
+  :root{
+    --paper:#fbfaf6; --ink:#1f1d1a; --muted:#6b6459; --line:#e3ddd0;
+    --amber:#c8862e; --amber-tint:#f4e6cc; --teal:#2e7d77; --teal-tint:#d3e9e6;
+    --rule:#d8d1c2; --accent:#7a3e2f; --red:#b23a2e;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;line-height:1.5;font-size:17px;}
+  .wrap{max-width:720px;margin:0 auto;padding:48px 28px 64px}
+  .eyebrow{font-family:"Helvetica Neue",Arial,sans-serif;text-transform:uppercase;
+    letter-spacing:.18em;font-size:12px;font-weight:700;color:var(--accent);margin:0 0 10px}
+  h1{font-size:32px;line-height:1.12;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:16px;margin:0 0 8px}
+  h2{font-family:"Helvetica Neue",Arial,sans-serif;font-size:12.5px;text-transform:uppercase;
+    letter-spacing:.13em;font-weight:700;color:var(--accent);margin:32px 0 8px}
+  p{margin:10px 0}
+  strong{font-weight:600}
+  .mono{font-family:"SFMono-Regular",Menlo,Consolas,monospace}
+  .rule{height:1px;background:var(--rule);border:0;margin:26px 0}
+  svg{max-width:100%;height:auto}
+  .clef{font-family:"Noto Music","Bravura Text","Bravura",serif;fill:var(--ink)}
+  .acc{font-family:"Noto Music","Bravura Text","Bravura",serif;}
+
+  .vtable{width:100%;border-collapse:collapse;margin:8px 0;font-size:15.5px}
+  .vtable th,.vtable td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+  .vtable th{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);font-weight:700}
+  .vtable .nm{font-weight:600;white-space:nowrap}
+  .vtable .sym{font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-weight:700;color:var(--accent);white-space:nowrap}
+  .vtable .rec{font-family:"SFMono-Regular",Menlo,Consolas,monospace;letter-spacing:.04em;white-space:nowrap}
+  .vtable .onc{font-family:"SFMono-Regular",Menlo,Consolas,monospace;white-space:nowrap}
+  .vtable tr.dk td{background:#fbf6ee}
+
+  .stair{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0;font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-weight:700;font-size:16px}
+  .stair .q{border:1px solid var(--line);border-radius:7px;padding:7px 12px;background:#fff}
+  .stair .q small{display:block;font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:10px;color:var(--amber);letter-spacing:.04em;margin-top:3px}
+  .stair .arr{color:var(--muted)}
+
+  .cols{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
+  .cols > div{flex:1 1 280px}
+  .steps{margin:8px 0;padding-left:0;list-style:none;counter-reset:s}
+  .steps li{position:relative;padding:7px 0 7px 34px;font-size:15px;border-bottom:1px solid var(--line)}
+  .steps li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:7px;
+    width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;text-align:center;line-height:22px}
+
+  figure{margin:6px 0;text-align:center}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:5px}
+
+  .big-rule{background:var(--amber-tint);border-radius:8px;padding:14px 20px;margin:18px 0;font-size:17px}
+  .big-rule strong{color:var(--accent)}
+  .fine{font-size:14px;color:var(--muted)}
+  .footer{margin-top:40px;border-top:1px solid var(--rule);padding-top:18px;color:var(--muted);font-size:13.5px}
+  .footer a{color:var(--accent)}
+
+  @media print{ body{background:#fff;font-size:11.5pt} .wrap{padding:0;max-width:100%} figure,.vtable,.steps,.cols,.stair{break-inside:avoid} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">Reference card · Naming seventh chords</p>
+  <h1>The Five Faces</h1>
+  <p class="sub">The skeleton (four letters) comes from Lesson 1. The <strong>quality</strong> is the accidentals on top of it. A quality is just <strong>a triad + which seventh</strong> — and there are five.</p>
+
+  <h2>The five qualities</h2>
+  <table class="vtable">
+    <thead><tr><th>Quality</th><th>Symbol</th><th>Triad + 7th</th><th>Thirds (bottom&rarr;top)</th><th>On C</th></tr></thead>
+    <tbody>
+      <tr><td class="nm">Major 7th</td><td class="sym">maj7 &#x25B3;7</td><td>major + major 7th</td><td class="rec">M&middot;m&middot;M</td><td class="onc">C E G B</td></tr>
+      <tr><td class="nm">Dominant 7th</td><td class="sym">7</td><td>major + minor 7th</td><td class="rec">M&middot;m&middot;m</td><td class="onc">C E G B&#x266D;</td></tr>
+      <tr><td class="nm">Minor 7th</td><td class="sym">m7 &#8722;7</td><td>minor + minor 7th</td><td class="rec">m&middot;M&middot;m</td><td class="onc">C E&#x266D; G B&#x266D;</td></tr>
+      <tr class="dk"><td class="nm">Half-dim 7th</td><td class="sym">&#xF8;7 m7&#x266D;5</td><td>diminished + minor 7th</td><td class="rec">m&middot;m&middot;M</td><td class="onc">C E&#x266D; G&#x266D; B&#x266D;</td></tr>
+      <tr class="dk"><td class="nm">Fully-dim 7th</td><td class="sym">&#xB0;7 dim7</td><td>diminished + dim 7th</td><td class="rec">m&middot;m&middot;m</td><td class="onc">C E&#x266D; G&#x266D; B&#x266D;&#x266D;</td></tr>
+    </tbody>
+  </table>
+  <p class="fine">The bottom two thirds spell the triad: <span class="mono">M&middot;m</span> = major, <span class="mono">m&middot;M</span> = minor, <span class="mono">m&middot;m</span> = diminished. The top third decides the seventh.</p>
+
+  <h2>The staircase — lower one note per step</h2>
+  <div class="stair">
+    <span class="q">maj7</span><span class="arr">&rarr;</span>
+    <span class="q">7<small>&#x266D;7</small></span><span class="arr">&rarr;</span>
+    <span class="q">m7<small>&#x266D;3</small></span><span class="arr">&rarr;</span>
+    <span class="q">&#xF8;7<small>&#x266D;5</small></span><span class="arr">&rarr;</span>
+    <span class="q">&#xB0;7<small>&#x266D;&#x266D;7</small></span>
+  </div>
+  <p class="fine">Brightest &rarr; darkest, all on one skeleton (e.g. C&middot;E&middot;G&middot;B). Each arrow drops one more note a half-step — one key to the left. To <strong>write</strong> fast: spell the maj7, then add the flats the staircase shows.</p>
+
+  <h2>Both directions</h2>
+  <div class="cols">
+    <div>
+      <p style="margin:4px 0;font-weight:600;color:var(--teal)">Read &mdash; staff &rarr; name</p>
+      <ol class="steps">
+        <li>Spell the <strong>skeleton</strong> (bottom note, alphabet-skip).</li>
+        <li>Name the <strong>triad</strong> (bottom three): major / minor / dim.</li>
+        <li>Is the 7th <strong>major or minor</strong>? Combine &rarr; quality.</li>
+      </ol>
+    </div>
+    <div>
+      <p style="margin:4px 0;font-weight:600;color:var(--accent)">Write &mdash; name &rarr; staff</p>
+      <ol class="steps">
+        <li>Spell the <strong>skeleton</strong> from the root.</li>
+        <li>Set the <strong>triad</strong> the name asks for (maj/min/dim).</li>
+        <li>Add the <strong>seventh</strong> the name asks for.</li>
+      </ol>
+    </div>
+  </div>
+
+  <h2>Three traps</h2>
+  <p style="margin:6px 0"><strong>1. &ldquo;7&rdquo; alone = dominant.</strong> <span class="mono">C7</span> is <em>never</em> a Cmaj7 — the bare number is the major-triad-plus-<em>minor</em>-7th chord.<br>
+  <strong>2. Two diminisheds.</strong> <span class="mono">&oslash;7</span> = <em>half</em> (dim triad, ordinary minor 7th). <span class="mono">&deg;7</span> = <em>full</em> (the 7th is diminished too — a double-flat appears when you spell it in thirds).<br>
+  <strong>3. <span class="mono">m7&#x266D;5</span> means <span class="mono">&oslash;7</span></strong> — same chord, lead-sheet spelling. It reads as its own recipe: minor-7th chord, flat the 5th.</p>
+
+  <h2>The catch: the white-key &ldquo;diminished&rdquo;</h2>
+  <div class="cols">
+    <div>
+      <figure>
+        <svg viewBox="0 0 196 116" role="img" aria-label="B half-diminished: B D F A, all natural.">
+          <g stroke="#1f1d1a" stroke-width="1.1"><line x1="12" y1="40" x2="190" y2="40"/><line x1="12" y1="52" x2="190" y2="52"/><line x1="12" y1="64" x2="190" y2="64"/><line x1="12" y1="76" x2="190" y2="76"/><line x1="12" y1="88" x2="190" y2="88"/></g>
+          <text class="clef" x="14" y="90" font-size="50">&#x1D11E;</text>
+          <line x1="108" y1="28" x2="132" y2="28" stroke="#1f1d1a" stroke-width="1.1"/>
+          <ellipse cx="120" cy="64" rx="8.4" ry="6" transform="rotate(-20 120 64)" fill="#2e7d77"/>
+          <ellipse cx="120" cy="52" rx="8.4" ry="6" transform="rotate(-20 120 52)" fill="#2e7d77"/>
+          <ellipse cx="120" cy="40" rx="8.4" ry="6" transform="rotate(-20 120 40)" fill="#2e7d77"/>
+          <ellipse cx="120" cy="28" rx="8.4" ry="6" transform="rotate(-20 120 28)" fill="#2e7d77"/>
+        </svg>
+        <figcaption><strong style="color:var(--teal)">B&oslash;7 = B&middot;D&middot;F&middot;A</strong><br>all white keys &middot; lives in C major</figcaption>
+      </figure>
+    </div>
+    <div>
+      <figure>
+        <svg viewBox="0 0 196 116" role="img" aria-label="B fully-diminished: B D F A-flat.">
+          <g stroke="#1f1d1a" stroke-width="1.1"><line x1="12" y1="40" x2="190" y2="40"/><line x1="12" y1="52" x2="190" y2="52"/><line x1="12" y1="64" x2="190" y2="64"/><line x1="12" y1="76" x2="190" y2="76"/><line x1="12" y1="88" x2="190" y2="88"/></g>
+          <text class="clef" x="14" y="90" font-size="50">&#x1D11E;</text>
+          <line x1="108" y1="28" x2="132" y2="28" stroke="#1f1d1a" stroke-width="1.1"/>
+          <ellipse cx="120" cy="64" rx="8.4" ry="6" transform="rotate(-20 120 64)" fill="#1f1d1a"/>
+          <ellipse cx="120" cy="52" rx="8.4" ry="6" transform="rotate(-20 120 52)" fill="#1f1d1a"/>
+          <ellipse cx="120" cy="40" rx="8.4" ry="6" transform="rotate(-20 120 40)" fill="#1f1d1a"/>
+          <ellipse cx="120" cy="28" rx="8.4" ry="6" transform="rotate(-20 120 28)" fill="#c8862e"/>
+          <text class="acc" x="100" y="33" font-size="18" fill="#c8862e">&#x266D;</text>
+        </svg>
+        <figcaption><strong style="color:var(--amber)">B&deg;7 = B&middot;D&middot;F&middot;A&#x266D;</strong><br>one flat &middot; chromatic guest</figcaption>
+      </figure>
+    </div>
+  </div>
+  <p class="fine">The diatonic &ldquo;diminished&rdquo; chord in a major key is the <strong>half</strong>-diminished on degree 7. The <strong>fully</strong>-diminished needs an extra flat and comes from the minor side.</p>
+
+  <div class="big-rule">
+    <strong>The whole card in one line:</strong> read the triad, then ask <em>major or minor seventh?</em> — that names it. Five faces on one skeleton, brightest to darkest: <strong>maj7 &rarr; 7 &rarr; m7 &rarr; &oslash;7 &rarr; &deg;7</strong>, one note lower each step.
+  </div>
+
+  <p class="footer">
+    From Lesson 2 · <a href="../lessons/0002-the-five-faces.html">The Five Faces</a> · skeleton first in Lesson 1 · <a href="../lessons/0001-stacked-in-thirds.html">Stacked in Thirds</a><br>
+    Drill both directions with quality on at <a href="https://www.musictheory.net/exercises/chord">musictheory.net</a>.<br>
+    Mission: name and read seventh chords on the staff — to understand the harmony.
+  </p>
+
+</div>
+</body>
+</html>

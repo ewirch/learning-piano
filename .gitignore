@@ -1,0 +1,7 @@
+/dist/
+*.md.draft
+
+# build/ holds the site tooling and must be committed, but a global gitignore
+# (~/.config/git/gitignore) ignores any "build" dir — re-include it here.
+!/build/
+!/build/**

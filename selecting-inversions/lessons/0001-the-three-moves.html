@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 1 · The Three Moves</title>
+<style>
+  :root{
+    --paper:#fbfaf6;
+    --ink:#1f1d1a;
+    --muted:#6b6459;
+    --line:#e3ddd0;
+    --amber:#c8862e;
+    --amber-tint:#f4e6cc;
+    --teal:#2e7d77;
+    --teal-tint:#d3e9e6;
+    --rule:#d8d1c2;
+    --accent:#7a3e2f;
+    --red:#b23a2e;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    line-height:1.62;
+    font-size:18px;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:64px 28px 96px}
+  .eyebrow{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    text-transform:uppercase;letter-spacing:.18em;font-size:12.5px;font-weight:700;
+    color:var(--accent);margin:0 0 14px;
+  }
+  h1{font-size:42px;line-height:1.08;margin:0 0 18px;font-weight:600;letter-spacing:-.01em}
+  .lede{font-size:21px;line-height:1.5;color:#2c2823;margin:0 0 8px}
+  h2{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:14px;text-transform:uppercase;letter-spacing:.14em;font-weight:700;
+    color:var(--accent);margin:54px 0 6px;
+  }
+  h2 .num{color:var(--muted);margin-right:.5em}
+  h3{font-size:22px;margin:0 0 4px;font-weight:600}
+  p{margin:14px 0}
+  strong{font-weight:600}
+  a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+  .rule{height:1px;background:var(--rule);border:0;margin:40px 0}
+
+  .diagnosis{
+    background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);
+    border-radius:8px;padding:20px 24px;margin:28px 0;font-size:17px;
+  }
+  .diagnosis p{margin:8px 0}
+  .diagnosis .label{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin:0 0 6px;
+  }
+  .callout{
+    background:var(--amber-tint);border-radius:8px;padding:16px 22px;margin:26px 0;font-size:17px;
+  }
+  .callout strong{color:var(--accent)}
+  .aside{
+    border:1px dashed var(--rule);border-radius:8px;padding:14px 20px;margin:22px 0;
+    font-size:15.5px;color:#3a362f;background:#fffdf8;
+  }
+  .aside .label{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:11.5px;font-weight:700;
+    letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin:0 0 4px;
+  }
+
+  figure{margin:24px 0;text-align:center}
+  figcaption{font-size:13.5px;color:var(--muted);margin-top:10px;text-align:center}
+  svg{max-width:100%;height:auto}
+
+  .vtable{width:100%;border-collapse:collapse;margin:14px 0;font-size:16px}
+  .vtable th,.vtable td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  .vtable th{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:700}
+  .vtable .chg{font-weight:600;white-space:nowrap}
+  .vtable .stay{color:var(--teal);font-weight:600}
+  .vtable .none{color:var(--red);font-weight:600}
+  .vtable .mv{color:var(--muted)}
+
+  .shapes{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+  .shapes .chip{flex:1 1 140px;border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:#fff;text-align:center}
+  .shapes .name{font-size:24px;font-weight:700;line-height:1}
+  .shapes .name .rn{font-size:13px;color:var(--muted);font-weight:600;margin-left:4px}
+  .shapes .notes{font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-size:15.5px;letter-spacing:.06em;margin-top:7px;color:#2c2823}
+  .shapes .fing{font-size:13px;color:var(--muted);margin-top:4px}
+  .shapes .bass{font-size:13px;color:var(--teal);font-weight:700;margin-top:6px;border-top:1px solid var(--line);padding-top:6px}
+
+  /* the quiz */
+  .quiz{
+    border:1px solid var(--line);border-radius:10px;background:#fff;
+    padding:22px 24px;margin:18px 0;
+  }
+  .quiz .prompt{
+    font-size:34px;font-weight:700;text-align:center;margin:6px 0 16px;letter-spacing:.02em;
+  }
+  .quiz .opts{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .quiz button{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:14.5px;font-weight:700;
+    border:1.5px solid var(--accent);background:#fff;color:var(--accent);
+    padding:10px 16px;border-radius:8px;cursor:pointer;flex:1 1 180px;max-width:230px;
+  }
+  .quiz button:hover:not(:disabled){background:var(--amber-tint)}
+  .quiz button:disabled{opacity:.55;cursor:default}
+  .quiz .fb{
+    min-height:2.2em;text-align:center;font-size:16px;margin:14px 0 0;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+  }
+  .quiz .fb.ok{color:var(--teal);font-weight:600}
+  .quiz .fb.no{color:var(--red);font-weight:600}
+  .quiz .score{
+    text-align:center;font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:13.5px;color:var(--muted);margin-top:8px;
+  }
+  .quiz .score b{color:var(--ink)}
+  .noscript{font-size:14.5px;color:var(--muted);font-style:italic}
+
+  /* drills */
+  .loop-banner{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:15px;letter-spacing:.02em;
+    background:#1f1d1a;color:#f7f3ea;border-radius:8px;padding:14px 20px;margin:22px 0;
+    text-align:center;
+  }
+  .loop-banner b{color:#f2c97d}
+  .drill{
+    border:1px solid var(--line);border-radius:10px;background:#fff;padding:20px 22px;margin:18px 0;
+  }
+  .drill .top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+  .badge{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;
+    letter-spacing:.06em;color:#fff;background:var(--accent);border-radius:20px;
+    padding:4px 12px;white-space:nowrap;
+  }
+  .drill .goal{
+    font-size:15px;color:var(--muted);margin-top:10px;
+    border-top:1px dashed var(--rule);padding-top:10px;
+  }
+  .drill .goal b{color:var(--ink);font-weight:600}
+  .stretch{border:1.5px solid var(--amber);background:#fffaf0}
+
+  .teacher{
+    background:#fff;border:2px solid var(--accent);border-radius:10px;padding:22px 24px;margin:40px 0;
+  }
+  .teacher h3{color:var(--accent)}
+
+  .sources{font-size:14.5px;color:var(--muted);margin-top:14px}
+  .sources li{margin:5px 0}
+  .reopen{
+    font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-size:13.5px;
+    background:#1f1d1a;color:#f2c97d;padding:3px 8px;border-radius:5px;
+  }
+  .footer{margin-top:64px;border-top:1px solid var(--rule);padding-top:22px;color:var(--muted);font-size:14px}
+
+  @media print{
+    body{background:#fff;font-size:12pt}
+    .wrap{padding:0;max-width:100%}
+    .quiz{display:none}
+    .drill,.teacher,.diagnosis{break-inside:avoid}
+    a{color:var(--ink)}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">Lesson 1 · Selecting inversions</p>
+  <h1>The Three Moves</h1>
+  <p class="lede">You already play smooth inversions — when someone hands them to you. This lesson hands you the machine instead: read the distance between two <em>roots</em> off the chart, apply the matching move, and the next chord's shape falls out — rulebook-correct, and already under your hand. There are no wrong inversions. There are only wrong roads between them.</p>
+
+  <div class="diagnosis">
+    <p class="label">Why this lesson, and why now</p>
+    <p>In the blind-play workspace you caught the parallel fifths at G→Am yourself — but the fix was derived <em>for</em> you. Detection you have; <strong>generation</strong> is the missing piece. The good news: in your texture — right hand close triad, left hand bass root, four voices in total — the classic part-writing rulebook compresses into <strong>three mechanical moves</strong>, chosen by one number you can read straight off any chord chart.<sup><a href="#s1">1</a></sup></p>
+  </div>
+
+  <h2><span class="num">1</span>The frame: you already play four-voice harmony</h2>
+  <p>Three voices in the right hand, one in the left — that's <strong>keyboard style</strong>, the piano layout of four-part writing. The rulebook you asked to respect says, in full:<sup><a href="#s2">2</a></sup> no two voices — <em>bass included</em> — may move in parallel fifths or parallel octaves (compounds like twelfths count too); parallel 3rds, 4ths and 6ths are fine. And one freebie: with the root in the bass and a complete triad in the right hand, the preferred doubling — <strong>doubled root</strong> — happens by itself.<sup><a href="#s1">1</a></sup> Your texture is rule-legal by construction; only the <em>roads between chords</em> can break it.</p>
+
+  <div class="aside">
+    <p class="label">Which inversion is it, really?</p>
+    While your left hand plays roots, every chord is technically in <em>root position</em> — the bass note decides that, not the right hand. What you're selecting is the <strong>rotation of the three upper voices</strong>. We'll keep calling these RH shapes "inversions", as you do; just know that the day the <em>bass</em> starts inverting (C/E, G/B — a later lesson), the word gets its strict meaning back.
+  </div>
+
+  <h2><span class="num">2</span>The three moves</h2>
+  <p>Everything turns on the <strong>root interval</strong> — the letter distance between consecutive roots on the chart. It alone fixes how many <em>keys</em> the two chords share. Whether a shared key also keeps its <em>finger</em> is a separate, second decision — your own rule answers it, in the fingers pass below. Three cases, three moves:<sup><a href="#s1">1</a></sup></p>
+
+  <table class="vtable">
+    <thead><tr><th>Roots are…</th><th>Shared keys</th><th>The move</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td class="chg">a 3rd apart</td><td class="stay">two</td><td><strong>Hold two</strong> — both shared keys stay down, the one remaining voice steps</td><td class="mv">C→Am, Am→F</td></tr>
+      <tr><td class="chg">a 4th/5th apart</td><td class="stay">one</td><td><strong>Hold one</strong> — the shared key stays down, the other two voices step to the nearest chord tones</td><td class="mv">G→C, C→F</td></tr>
+      <tr><td class="chg">a 2nd apart</td><td class="none">none</td><td><strong>Mirror the bass</strong> — all three RH voices move <em>opposite</em> the bass, each to its nearest chord tone</td><td class="mv">F→G, C→Dm</td></tr>
+    </tbody>
+  </table>
+
+  <figure>
+    <svg viewBox="0 0 590 196" role="img" aria-label="Three keyboard panels showing the three moves: hold two at C to A minor, hold one at G to C, mirror the bass at F to G.">
+      <defs>
+        <marker id="ah" viewBox="0 0 8 8" refX="6.5" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0,0.6 L7.4,4 L0,7.4 Z" fill="#c8862e"/>
+        </marker>
+      </defs>
+      <!-- ============ panel template: keyboard A3..B4, 9 whites of 14px ============ -->
+      <!-- PANEL 1: C -> Am -->
+      <g transform="translate(24,0)">
+        <text x="63" y="20" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="13.5" font-weight="700" fill="#7a3e2f">HOLD TWO</text>
+        <text x="63" y="37" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="11.5" fill="#6b6459">roots a 3rd apart · C → Am</text>
+        <g stroke="#33302b" stroke-width="1.1">
+          <rect x="0" y="74" width="14" height="78" fill="#fff"/><rect x="14" y="74" width="14" height="78" fill="#fff"/><rect x="28" y="74" width="14" height="78" fill="#fff"/><rect x="42" y="74" width="14" height="78" fill="#fff"/><rect x="56" y="74" width="14" height="78" fill="#fff"/><rect x="70" y="74" width="14" height="78" fill="#fff"/><rect x="84" y="74" width="14" height="78" fill="#fff"/><rect x="98" y="74" width="14" height="78" fill="#fff"/><rect x="112" y="74" width="14" height="78" fill="#fff"/>
+        </g>
+        <g fill="#211f1c"><rect x="9.5" y="74" width="9" height="48" rx="1.5"/><rect x="37.5" y="74" width="9" height="48" rx="1.5"/><rect x="51.5" y="74" width="9" height="48" rx="1.5"/><rect x="79.5" y="74" width="9" height="48" rx="1.5"/><rect x="93.5" y="74" width="9" height="48" rx="1.5"/><rect x="107.5" y="74" width="9" height="48" rx="1.5"/></g>
+        <circle cx="35" cy="140" r="6.5" fill="#2e7d77"/>
+        <circle cx="63" cy="140" r="6.5" fill="none" stroke="#2e7d77" stroke-width="2.4"/>
+        <circle cx="91" cy="140" r="6.5" fill="none" stroke="#c8862e" stroke-width="2"/>
+        <circle cx="105" cy="140" r="6.5" fill="#c8862e"/>
+        <path d="M91,68 C94,58 102,58 105,68" fill="none" stroke="#c8862e" stroke-width="2" marker-end="url(#ah)"/>
+        <text x="63" y="172" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="11.5" fill="#6b6459">bass: C → A (down a 3rd)</text>
+        <text x="63" y="188" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="11.5" fill="#2e7d77" font-weight="700">C glued · E held, finger 3→2 · G steps to A</text>
+      </g>
+      <!-- PANEL 2: G -> C -->
+      <g transform="translate(232,0)">
+        <text x="63" y="20" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="13.5" font-weight="700" fill="#7a3e2f">HOLD ONE</text>
+        <text x="63" y="37" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="11.5" fill="#6b6459">roots a 4th/5th apart · G → C</text>
+        <g stroke="#33302b" stroke-width="1.1">
+          <rect x="0" y="74" width="14" height="78" fill="#fff"/><rect x="14" y="74" width="14" height="78" fill="#fff"/><rect x="28" y="74" width="14" height="78" fill="#fff"/><rect x="42" y="74" width="14" height="78" fill="#fff"/><rect x="56" y="74" width="14" height="78" fill="#fff"/><rect x="70" y="74" width="14" height="78" fill="#fff"/><rect x="84" y="74" width="14" height="78" fill="#fff"/><rect x="98" y="74" width="14" height="78" fill="#fff"/><rect x="112" y="74" width="14" height="78" fill="#fff"/>
+        </g>
+        <g fill="#211f1c"><rect x="9.5" y="74" width="9" height="48" rx="1.5"/><rect x="37.5" y="74" width="9" height="48" rx="1.5"/><rect x="51.5" y="74" width="9" height="48" rx="1.5"/><rect x="79.5" y="74" width="9" height="48" rx="1.5"/><rect x="93.5" y="74" width="9" height="48" rx="1.5"/><rect x="107.5" y="74" width="9" height="48" rx="1.5"/></g>
+        <circle cx="91" cy="140" r="6.5" fill="#2e7d77"/>
+        <circle cx="21" cy="140" r="6.5" fill="none" stroke="#c8862e" stroke-width="2"/>
+        <circle cx="35" cy="140" r="6.5" fill="#c8862e"/>
+        <circle cx="49" cy="140" r="6.5" fill="none" stroke="#c8862e" stroke-width="2"/>
+        <circle cx="63" cy="140" r="6.5" fill="#c8862e"/>
+        <path d="M21,68 C24,58 32,58 35,68" fill="none" stroke="#c8862e" stroke-width="2" marker-end="url(#ah)"/>
+        <path d="M49,68 C52,58 60,58 63,68" fill="none" stroke="#c8862e" stroke-width="2" marker-end="url(#ah)"/>
+        <text x="63" y="172" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="11.5" fill="#6b6459">bass: G → C (up a 4th)</text>
+        <text x="63" y="188" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="11.5" fill="#2e7d77" font-weight="700">G glued · B→C (leading tone!), D→E</text>
+      </g>
+      <!-- PANEL 3: F -> G -->
+      <g transform="translate(440,0)">
+        <text x="63" y="20" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="13.5" font-weight="700" fill="#7a3e2f">MIRROR THE BASS</text>
+        <text x="63" y="37" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="11.5" fill="#6b6459">roots a 2nd apart · F → G</text>
+        <g stroke="#33302b" stroke-width="1.1">
+          <rect x="0" y="74" width="14" height="78" fill="#fff"/><rect x="14" y="74" width="14" height="78" fill="#fff"/><rect x="28" y="74" width="14" height="78" fill="#fff"/><rect x="42" y="74" width="14" height="78" fill="#fff"/><rect x="56" y="74" width="14" height="78" fill="#fff"/><rect x="70" y="74" width="14" height="78" fill="#fff"/><rect x="84" y="74" width="14" height="78" fill="#fff"/><rect x="98" y="74" width="14" height="78" fill="#fff"/><rect x="112" y="74" width="14" height="78" fill="#fff"/>
+        </g>
+        <g fill="#211f1c"><rect x="9.5" y="74" width="9" height="48" rx="1.5"/><rect x="37.5" y="74" width="9" height="48" rx="1.5"/><rect x="51.5" y="74" width="9" height="48" rx="1.5"/><rect x="79.5" y="74" width="9" height="48" rx="1.5"/><rect x="93.5" y="74" width="9" height="48" rx="1.5"/><rect x="107.5" y="74" width="9" height="48" rx="1.5"/></g>
+        <circle cx="35" cy="140" r="6.5" fill="none" stroke="#c8862e" stroke-width="2"/>
+        <circle cx="21" cy="140" r="6.5" fill="#c8862e"/>
+        <circle cx="77" cy="140" r="6.5" fill="none" stroke="#c8862e" stroke-width="2"/>
+        <circle cx="49" cy="140" r="6.5" fill="#c8862e"/>
+        <circle cx="105" cy="140" r="6.5" fill="none" stroke="#c8862e" stroke-width="2"/>
+        <circle cx="91" cy="140" r="6.5" fill="#c8862e"/>
+        <path d="M35,68 C32,58 24,58 21,68" fill="none" stroke="#c8862e" stroke-width="2" marker-end="url(#ah)"/>
+        <path d="M77,68 C70,52 56,52 49,68" fill="none" stroke="#c8862e" stroke-width="2" marker-end="url(#ah)"/>
+        <path d="M105,68 C102,58 94,58 91,68" fill="none" stroke="#c8862e" stroke-width="2" marker-end="url(#ah)"/>
+        <text x="63" y="172" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="11.5" fill="#6b6459">bass: F → G (up a step)</text>
+        <text x="63" y="188" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="11.5" fill="#2e7d77" font-weight="700">nothing glued · the hand falls as the bass rises</text>
+      </g>
+    </svg>
+    <figcaption>Keyboard span A3–B4 in every panel. <span style="color:var(--teal);font-weight:700">teal filled</span> = glued (key <em>and</em> finger stay) · <span style="color:var(--teal);font-weight:700">teal ring</span> = key held, finger swaps underneath · <span style="color:var(--amber);font-weight:700">amber</span> hollow → filled = a voice stepping to its nearest chord tone.</figcaption>
+  </figure>
+
+  <div class="aside">
+    <p class="label">Second pass: the fingers</p>
+    <p style="margin:6px 0">The move decides the <strong>keys</strong>; your own rule decides the <strong>fingers</strong> — 3-and-5 within a third, thumb takes any fourth, pinky-side fourth puts the middle on 2. That rule is no private habit: it generates exactly the standard taught fingerings for triads and inversions (RH 1·3·5 / 1·2·5 / 1·3·5, LH 5·3·1 / 5·3·1 / 5·2·1).<sup><a href="#s5">5</a></sup> The consequence you discovered in the old workspace now becomes a rule of its own: <strong>a held key keeps its finger only if the fingering pattern survives the change.</strong> For the right hand the pattern flips whenever the change enters or leaves a 1st-inversion shape — and if the <em>middle</em> note is one of the held keys, the swap happens under it (3↔2, your "held note, re-fingered"). For hold-two changes, the full right-hand grid:</p>
+    <table class="vtable" style="font-size:14.5px">
+      <thead><tr><th>RH starts from…</th><th>root rises a 3rd (C→Em)</th><th>root falls a 3rd (C→Am)</th></tr></thead>
+      <tbody>
+        <tr><td class="chg">root position</td><td class="stay">both fingers glue</td><td class="none">middle held, 3→2</td></tr>
+        <tr><td class="chg">1st inversion</td><td class="none">middle held, 2→3</td><td class="stay">both fingers glue</td></tr>
+        <tr><td class="chg">2nd inversion</td><td class="stay">both fingers glue</td><td class="stay">both fingers glue</td></tr>
+      </tbody>
+    </table>
+    <p style="margin:6px 0">Left-hand triads mirror this exactly (the pattern flips at <em>2nd</em>-inversion shapes, so from root position it's <em>falling</em> roots that keep both fingers) — academic for now, since your left hand plays single bass roots. The same second pass governs hold-one changes too: the one shared key occasionally sits in a flipping middle and re-fingers. Mirror changes hold nothing, so there's nothing to lose.</p>
+  </div>
+
+  <div class="callout">
+    <strong>Reading it off the chart, at speed:</strong> neighbour letters (F–G, G–A, C–D) → <strong>mirror</strong>. Letters with exactly one between (C–A, A–F, E–C) → <strong>hold two</strong>. Everything else (C–F, G–C, D–G) → <strong>hold one</strong>. You never compute the shared notes — the letter distance already did.
+  </div>
+
+  <p>Notice what just happened to the word "selecting": you don't audition three inversions and pick one. You apply the move, and <strong>the inversion chooses itself</strong> — always the one nearest to your hand. Correctness and economy of motion come from the move; comfort comes from the fingers pass. Two decisions, both mechanical, no taste required.</p>
+
+  <h2><span class="num">3</span>Why the mirror — the trap where the rules earn their keep</h2>
+  <p>Hold-two and hold-one barely <em>can</em> go wrong: held keys pin the hand, the rest creeps stepwise. The danger lives entirely where roots are a 2nd apart and <strong>nothing is shared</strong>. There the lazy instinct — slide the whole hand up with the bass — manufactures parallels against the bass wholesale:<sup><a href="#s2">2</a></sup></p>
+
+  <figure>
+    <svg viewBox="0 0 600 240" role="img" aria-label="Two voice-leading graphs for F to G. Left, the lazy road: every voice rises with the bass, producing parallel octaves and parallel fifths against the bass. Right, the rule: the right hand falls while the bass rises — no parallels.">
+      <!-- LEFT: the lazy road -->
+      <g transform="translate(18,0)">
+        <text x="130" y="22" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="13" font-weight="700" fill="#b23a2e">THE LAZY ROAD — ride up with the bass</text>
+        <text x="70" y="44" text-anchor="middle" font-family="Iowan Old Style,Georgia,serif" font-size="15" font-weight="700" fill="#1f1d1a">F</text>
+        <text x="190" y="44" text-anchor="middle" font-family="Iowan Old Style,Georgia,serif" font-size="15" font-weight="700" fill="#1f1d1a">G</text>
+        <!-- voices -->
+        <g font-family="SFMono-Regular,Menlo,monospace" font-size="12" fill="#1f1d1a">
+          <text x="56" y="73" text-anchor="end">A4</text>  <line x1="62" y1="69" x2="178" y2="59" stroke="#1f1d1a" stroke-width="1.6"/> <text x="184" y="63">B4</text>
+          <text x="56" y="103" text-anchor="end">F4</text> <line x1="62" y1="99" x2="178" y2="89" stroke="#b23a2e" stroke-width="2.2"/> <text x="184" y="93" fill="#b23a2e" font-weight="700">G4</text>
+          <text x="56" y="133" text-anchor="end">C4</text> <line x1="62" y1="129" x2="178" y2="119" stroke="#b23a2e" stroke-width="2.2"/> <text x="184" y="123" fill="#b23a2e" font-weight="700">D4</text>
+          <text x="56" y="193" text-anchor="end">F2</text> <line x1="62" y1="189" x2="178" y2="179" stroke="#b23a2e" stroke-width="2.2"/> <text x="184" y="183" fill="#b23a2e" font-weight="700">G2</text>
+        </g>
+        <!-- parallel markers -->
+        <line x1="62" y1="99" x2="62" y2="189" stroke="#b23a2e" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="178" y1="89" x2="178" y2="179" stroke="#b23a2e" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="120" y="160" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="12" font-weight="700" fill="#b23a2e">8ve stays 8ve ‖ · 5th stays 5th ‖</text>
+        <text x="130" y="222" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="12" fill="#b23a2e">parallel octaves (F2–F4 → G2–G4) and fifths (F2–C4 → G2–D4)</text>
+      </g>
+      <!-- RIGHT: the rule -->
+      <g transform="translate(320,0)">
+        <text x="130" y="22" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="13" font-weight="700" fill="#2e7d77">THE RULE — mirror the bass</text>
+        <text x="70" y="44" text-anchor="middle" font-family="Iowan Old Style,Georgia,serif" font-size="15" font-weight="700" fill="#1f1d1a">F</text>
+        <text x="190" y="44" text-anchor="middle" font-family="Iowan Old Style,Georgia,serif" font-size="15" font-weight="700" fill="#1f1d1a">G</text>
+        <g font-family="SFMono-Regular,Menlo,monospace" font-size="12" fill="#1f1d1a">
+          <text x="56" y="73" text-anchor="end">A4</text>  <line x1="62" y1="69" x2="178" y2="79" stroke="#2e7d77" stroke-width="2.2"/> <text x="184" y="83" fill="#2e7d77" font-weight="700">G4</text>
+          <text x="56" y="103" text-anchor="end">F4</text> <line x1="62" y1="99" x2="178" y2="124" stroke="#2e7d77" stroke-width="2.2"/> <text x="184" y="128" fill="#2e7d77" font-weight="700">D4</text>
+          <text x="56" y="133" text-anchor="end">C4</text> <line x1="62" y1="129" x2="178" y2="139" stroke="#2e7d77" stroke-width="2.2"/> <text x="184" y="143" fill="#2e7d77" font-weight="700">B3</text>
+          <text x="56" y="193" text-anchor="end">F2</text> <line x1="62" y1="189" x2="178" y2="179" stroke="#1f1d1a" stroke-width="1.6"/> <text x="184" y="183">G2</text>
+        </g>
+        <text x="120" y="160" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="12" font-weight="700" fill="#2e7d77">hand falls, bass rises</text>
+        <text x="130" y="222" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="12" fill="#2e7d77">no pair of voices repeats a 5th or an octave — clean</text>
+      </g>
+    </svg>
+    <figcaption>The same change, two roads. The destination chord D4·G4·B4 on the left is a perfectly good G chord — <strong>the chord isn't wrong, the road is</strong>. That's also precisely the species of error you caught at G→Am in the old loop.</figcaption>
+  </figure>
+
+  <div class="aside">
+    <p class="label">Legal isn't the same as nearest</p>
+    <p style="margin:6px 0">The safety here comes from one fact — the hand moving <em>opposite</em> the bass, so no upper voice can run parallel with it. But "opposite the bass" doesn't name a single chord. Keep falling past B·D·G to a root-position G — <strong>G3·B3·D4</strong> — and it's <em>still</em> legal: contrary motion, no parallel 5ths or 8ves, not one voice leaping a 7th. What rules it out isn't the rulebook; it's <strong>nearest chord tone</strong>. B·D·G shifts each finger a step or a third — six semitones of travel all told; the root-position G leaps every finger a 4th or 5th — eighteen — to land the very same notes. No-parallels keeps you <em>legal</em>; nearest is what makes the shape <em>unique</em>, and what keeps the lap below closing on the exact C·E·G it started from.</p>
+  </div>
+
+  <h2><span class="num">4</span>Worked: the '50s progression — your shapes, new order</h2>
+  <p><strong>C – Am – F – G</strong>, the "Stand by Me changes": Earth Angel, Stand by Me, Every Breath You Take, Perfect, Blank Space, and a few hundred more.<sup><a href="#s3">3</a></sup> Run the three moves around it, starting from your home C, and something pleasing happens: the machine outputs <em>exactly your four drilled shapes</em> — in a new order, with two transitions you've never played.</p>
+
+  <div class="shapes">
+    <div class="chip"><div class="name">C<span class="rn">I</span></div><div class="notes">C&nbsp;E&nbsp;G</div><div class="fing">RH 1 · 3 · 5</div><div class="bass">bass: C3</div></div>
+    <div class="chip"><div class="name">Am<span class="rn">vi</span></div><div class="notes">C&nbsp;E&nbsp;A</div><div class="fing">RH 1 · 2 · 5</div><div class="bass">bass: A2</div></div>
+    <div class="chip"><div class="name">F<span class="rn">IV</span></div><div class="notes">C&nbsp;F&nbsp;A</div><div class="fing">RH 1 · 3 · 5</div><div class="bass">bass: F2</div></div>
+    <div class="chip"><div class="name">G<span class="rn">V</span></div><div class="notes">B&nbsp;D&nbsp;G</div><div class="fing">RH 1 · 2 · 5</div><div class="bass">bass: G2</div></div>
+  </div>
+
+  <table class="vtable">
+    <thead><tr><th>Change</th><th>Move</th><th>Glued</th><th>Moving voices</th><th>Bass</th></tr></thead>
+    <tbody>
+      <tr><td class="chg">C → Am</td><td>3rd apart — <span class="stay">hold two</span></td><td class="stay">C glued on the thumb; E held, finger 3→2*</td><td class="mv">G→A on the pinky</td><td class="mv">C3 ↓ A2</td></tr>
+      <tr><td class="chg">Am → F</td><td>3rd apart — <span class="stay">hold two</span></td><td class="stay">C glued on the thumb, A glued on the pinky</td><td class="mv">E→F (2 lifts, 3 lands)</td><td class="mv">A2 ↓ F2</td></tr>
+      <tr><td class="chg">F → G</td><td>2nd apart — <span class="none">mirror</span></td><td class="none">nothing</td><td class="mv">all fall: C→B (thumb), F→D (3 lifts, 2 lands), A→G (pinky)</td><td class="mv">F2 ↑ G2</td></tr>
+      <tr><td class="chg">G → C</td><td>4th apart — <span class="stay">hold one</span></td><td class="stay">G glued on the pinky</td><td class="mv">B→C (thumb — the leading tone walks home), D→E (2 lifts, 3 lands)</td><td class="mv">G2 ↑ C3</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:14.5px;color:var(--muted)">*The fingers-pass grid in action: C→Am is a falling 3rd from root position, the one right-hand cell where a held key loses its finger — the E never re-sounds, but 3 hands it to 2 underneath (your "held note, re-fingered"). One glued thumb plus one held key is still plenty of handrail. Every other change in this loop glues for real.</p>
+  <p>Check the seams: every change obeys its move, the leading tone resolves at G→C, the root stays doubled the whole lap, and after four changes you land on the <em>identical</em> C·E·G you started from — the loop closes by itself. The bass walks C3·A2·F2·G2, every move a 4th or smaller, found by the same black-key landmarks as ever.</p>
+
+  <h2><span class="num">5</span>Name the move — speed trainer</h2>
+  <p>Efficiency is a classification skill: chart says two letters, you say the move, <em>before</em> your hand needs it. Ten in a row, no hesitation, is the bar. (All pairs are diatonic triads in C.)</p>
+
+  <div class="quiz" id="quiz">
+    <div class="prompt" id="qprompt">…</div>
+    <div class="opts">
+      <button type="button" data-a="0">Hold two<br><span style="font-weight:400">roots a 3rd apart</span></button>
+      <button type="button" data-a="1">Hold one<br><span style="font-weight:400">roots a 4th/5th apart</span></button>
+      <button type="button" data-a="2">Mirror the bass<br><span style="font-weight:400">roots a 2nd apart</span></button>
+    </div>
+    <p class="fb" id="qfb">Which move connects these two chords?</p>
+    <p class="score">streak <b id="qstreak">0</b> · best <b id="qbest">0</b> · answered <b id="qtotal">0</b></p>
+  </div>
+  <noscript><p class="noscript">Enable JavaScript for the trainer — or quiz yourself from any song's chord chart: name the move for every adjacent pair.</p></noscript>
+
+  <hr class="rule">
+
+  <h2><span class="num">6</span>Take it to the piano</h2>
+  <p>The feedback loop of this whole workspace: <strong>classify before you touch the keys</strong> — then let your hands confirm what your mouth predicted.</p>
+
+  <div class="loop-banner">
+    say the move → <b>predict what glues, what holds-and-swaps, what steps</b> → play the change → <b>verify</b>: did the prediction land?
+  </div>
+
+  <div class="drill">
+    <div class="top"><h3>Call the move</h3><span class="badge">~3 min</span></div>
+    <p>Both hands, the '50s loop, slow. Before <em>every</em> change say the classification aloud — "third apart, hold two" … "second apart, mirror" — then make the change. The saying is the drill; don't skip it once it feels obvious. That voice is what you'll hear in your head at playing speed.</p>
+    <p class="goal"><b>Goal:</b> two laps with the correct call before every change, no pauses to think.</p>
+  </div>
+
+  <div class="drill">
+    <div class="top"><h3>Glue check</h3><span class="badge">~3 min</span></div>
+    <p>Same loop, but now run the second pass out loud: before each change sort every held key into <em>glued</em> ("thumb stays put") or <em>held-and-swapped</em> ("E holds, 3 hands it to 2") — then play it and check whether the sorting proves true under your hand. C→Am is the loop's only swap; everything else glues for real.</p>
+    <p class="goal"><b>Goal:</b> one lap where every finger-prediction proves true under your hand.</p>
+  </div>
+
+  <div class="drill">
+    <div class="top"><h3>Hear the trap</h3><span class="badge">~2 min</span></div>
+    <p>At F→G only, with the bass: first play the <strong>lazy road</strong> on purpose — slide everything up to D·G·B over G2 — and listen. Then play the <strong>mirror</strong> — hand falls to B·D·G as the bass rises. The lazy road sounds like one thick block marching; the mirror sounds like four people walking. This is what parallel octaves and fifths <em>are</em>: voices giving up their independence.<sup><a href="#s2">2</a></sup> Once heard, your ear joins the rulebook's side.</p>
+    <p class="goal"><b>Goal:</b> play both roads twice and describe the difference out loud in your own words.</p>
+  </div>
+
+  <div class="drill stretch">
+    <div class="top"><h3>Stretch: derive your old loop — and hit the wall</h3><span class="badge">cliffhanger</span></div>
+    <p>Run the three moves over the old blind loop, <strong>C–G–Am–F</strong>, from the same home C. Three changes fall out instantly and reproduce your drilled shapes to the finger: C→G (hold one), Am→F (hold two), F→C (hold one). Then try <strong>G→Am</strong>. It classifies as <em>mirror</em> — but play what the mirror produces over the bass and check it against the rules. Something refuses. (Hint: your current blind loop's G→Am, the block-shift you've drilled, also has a secret — check the bass against the right hand's G and D.)</p>
+    <p class="goal"><b>Goal:</b> not to solve it — to see <em>precisely where</em> it breaks. Bring me your findings. V→vi is the one change with an exception clause,<sup><a href="#s1">1</a></sup> and it's the whole of Lesson 2.</p>
+  </div>
+
+  <div class="teacher">
+    <h3>I'm your teacher — ask me</h3>
+    <p style="margin-bottom:0">Tell me how it went. Did the move-calls become automatic, or does one class (my bet: hold one vs hold two under tempo) keep needing thought? What did you find at the G→Am wall — and did you spot what's hiding in your old loop's bass? If any claim here smells wrong, challenge it: your corrections have landed every time so far — the fingers pass above exists because of one. Follow-up questions of any size are exactly what I'm for.</p>
+  </div>
+
+  <hr class="rule">
+
+  <ol class="sources">
+    <li id="s1"><a href="https://musictheory.pugetsound.edu/mt21c/VoiceLeadingFourPartsRootPosition.html">26.7 Voice Leading Root Position Triads in Four Parts — <em>Music Theory for the 21st-Century Classroom</em>, R. Hutchinson</a> (roots a 3rd/6th apart: retain two common tones, move the other voice by step; roots a 4th/5th: keep the shared tone, others stepwise; roots a 2nd: upper parts contrary to the bass; always double the root; the V–vi exception).</li>
+    <li id="s2"><a href="https://musictheory.pugetsound.edu/mt21c/ObjectionableParallels.html">26.3 Objectionable Parallels — <em>Music Theory for the 21st-Century Classroom</em>, R. Hutchinson</a> (no two voices in parallel 5ths/octaves, compounds included; parallel 3rds, 4ths, 6ths acceptable; parallels destroy the independence of the voices).</li>
+    <li id="s3"><a href="https://en.wikipedia.org/wiki/%2750s_progression">'50s progression — Wikipedia</a> (I–vi–IV–V, the "Stand by Me changes", and its long song list).</li>
+    <li id="s4"><a href="https://www.gmajormusictheory.org/Fundamentals/Ch15.pdf">Common Tone-Stepwise and Contrary Motion-Nearest — G Major Music Theory (PDF)</a> (the same two procedures under their classroom names: any common tone → hold it and step; none → contrary to the bass, nearest tones).</li>
+    <li id="s5"><a href="https://pianoguidelessons.com/fingering-chords-on-piano/">Fingering Chords on Piano — Piano Guide Lessons</a> (the standard triad fingerings per position: RH 1·3·5 root, 1·2·5 first inversion, 1·3·5 second inversion; LH 5·3·1, 5·3·1, 5·2·1 — exactly what your 3-and-5-within-a-third rule generates).</li>
+  </ol>
+
+  <p class="footer">
+    Reopen this lesson any time: <span class="reopen">xdg-open ~/src.extern/learning-piano/selecting-inversions/lessons/0001-the-three-moves.html</span><br>
+    Pocket version for the piano desk: <span class="reopen">xdg-open ~/src.extern/learning-piano/selecting-inversions/reference/0001-three-moves-card.html</span><br>
+    Mission: select chord inversions correctly and efficiently, at playing speed.
+  </p>
+
+</div>
+
+<script>
+(function(){
+  var deck = [
+    {q:"C → Am",  a:0, fb:"two shared (C, E) — hold both, G steps to A"},
+    {q:"Am → F",  a:0, fb:"two shared (A, C) — hold both, E steps to F"},
+    {q:"F → G",   a:2, fb:"nothing shared — bass rises, hand falls"},
+    {q:"G → C",   a:1, fb:"one shared (G) — hold it; B and D step up"},
+    {q:"C → F",   a:1, fb:"one shared (C) — hold it, two voices step"},
+    {q:"Dm → G",  a:1, fb:"one shared (D) — hold it, two voices step"},
+    {q:"Em → Am", a:1, fb:"one shared (E) — hold it, two voices step"},
+    {q:"G → Am",  a:2, fb:"nothing shared — mirror class… plus one wrinkle. V→vi is Lesson 2's story"},
+    {q:"C → Dm",  a:2, fb:"nothing shared — bass rises, hand falls"},
+    {q:"F → Am",  a:0, fb:"two shared (A, C) — hold both, F steps to E"},
+    {q:"Em → C",  a:0, fb:"two shared (E, G) — hold both, B steps to C"},
+    {q:"Am → G",  a:2, fb:"nothing shared — bass falls, hand rises"},
+    {q:"Dm → F",  a:0, fb:"two shared (F, A) — hold both, D steps to C"},
+    {q:"F → C",   a:1, fb:"one shared (C) — hold it; F→E, A→G"},
+    {q:"Em → F",  a:2, fb:"nothing shared — bass rises, hand falls"},
+    {q:"Am → Dm", a:1, fb:"one shared (A) — hold it; C→D, E→F"}
+  ];
+  var names = ["hold two", "hold one", "mirror the bass"];
+  var promptEl = document.getElementById("qprompt");
+  var fbEl = document.getElementById("qfb");
+  var streakEl = document.getElementById("qstreak");
+  var bestEl = document.getElementById("qbest");
+  var totalEl = document.getElementById("qtotal");
+  var btns = Array.prototype.slice.call(document.querySelectorAll("#quiz .opts button"));
+  if(!promptEl) return;
+
+  var order = [], pos = 0, cur = null, streak = 0, best = 0, total = 0, lock = false;
+
+  function shuffle(){
+    order = deck.map(function(_, i){ return i; });
+    for(var i = order.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = order[i]; order[i] = order[j]; order[j] = t;
+    }
+    pos = 0;
+  }
+
+  function next(){
+    if(pos >= order.length) shuffle();
+    cur = deck[order[pos++]];
+    promptEl.textContent = cur.q;
+    fbEl.textContent = "Which move?";
+    fbEl.className = "fb";
+    lock = false;
+    btns.forEach(function(b){ b.disabled = false; });
+  }
+
+  function answer(a){
+    if(lock || !cur) return;
+    lock = true;
+    btns.forEach(function(b){ b.disabled = true; });
+    total++;
+    var right = a === cur.a;
+    if(right){
+      streak++;
+      if(streak > best) best = streak;
+      fbEl.textContent = "✓ " + cur.fb;
+      fbEl.className = "fb ok";
+    } else {
+      streak = 0;
+      fbEl.textContent = "✗ It's " + names[cur.a] + ": " + cur.fb;
+      fbEl.className = "fb no";
+    }
+    streakEl.textContent = streak;
+    bestEl.textContent = best;
+    totalEl.textContent = total;
+    setTimeout(next, right ? 950 : 2100);
+  }
+
+  btns.forEach(function(b){
+    b.addEventListener("click", function(){ answer(parseInt(b.getAttribute("data-a"), 10)); });
+  });
+
+  shuffle();
+  next();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+/* Shared styling for generated pages (index landing, per-course overviews,
+   and the GLOSSARY/RESOURCES documents). Palette + typography lifted from the
+   hand-authored lesson pages so the generated pages match. Inlined into every
+   page by build/assemble.py (no external stylesheet → no non-HTML links). */
+
+:root{
+  --paper:#fbfaf6; --ink:#1f1d1a; --muted:#6b6459; --line:#e3ddd0;
+  --amber:#c8862e; --amber-tint:#f4e6cc; --teal:#2e7d77; --teal-tint:#d3e9e6;
+  --rule:#d8d1c2; --accent:#7a3e2f;
+}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  line-height:1.62;font-size:18px;
+}
+.wrap{max-width:760px;margin:0 auto;padding:64px 28px 96px}
+.eyebrow{
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  text-transform:uppercase;letter-spacing:.18em;font-size:12.5px;font-weight:700;
+  color:var(--accent);margin:0 0 14px;
+}
+h1{font-size:42px;line-height:1.08;margin:0 0 18px;font-weight:600;letter-spacing:-.01em}
+h2{
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:14px;text-transform:uppercase;letter-spacing:.14em;font-weight:700;
+  color:var(--accent);margin:52px 0 14px;
+}
+h3{font-size:22px;margin:24px 0 4px;font-weight:600}
+p{margin:14px 0}
+strong{font-weight:600}
+em{font-style:italic}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+hr,.rule{height:1px;background:var(--rule);border:0;margin:40px 0}
+
+/* ---- overview pages: landing + per-course (body.overview) ---- */
+.overview .intro{font-size:21px;line-height:1.5;color:#2c2823;margin:0 0 8px}
+.overview dl{margin:6px 0 0}
+.overview dt{
+  border-top:1px solid var(--line);margin-top:20px;padding-top:18px;
+  font-size:21px;font-weight:600;line-height:1.2;
+}
+.overview dt:first-of-type{border-top:0;margin-top:10px}
+.overview dt a{color:var(--accent);text-decoration:none}
+.overview dt a:hover{text-decoration:underline}
+.overview dd{margin:5px 0 0;color:var(--muted);font-size:16.5px;line-height:1.5}
+
+/* ---- document pages: GLOSSARY / RESOURCES (body.doc) ---- */
+.doc ul,.doc ol{padding-left:1.25em;margin:14px 0}
+.doc li{margin:10px 0}
+.doc li > ul,.doc li > ol{margin:6px 0}
+.doc blockquote{
+  border-left:3px solid var(--line);margin:18px 0;padding:2px 0 2px 18px;color:var(--muted);
+}
+.doc code{
+  font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-size:.9em;
+  background:#f0ece2;padding:1px 5px;border-radius:4px;
+}
+.doc pre{background:#f0ece2;padding:14px 16px;border-radius:8px;overflow:auto}
+.doc pre code{background:none;padding:0}
+.doc table{border-collapse:collapse;width:100%;margin:18px 0;font-size:16px}
+.doc th,.doc td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+.doc th{
+  font-family:"Helvetica Neue",Arial,sans-serif;font-size:11.5px;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:700;
+}
+
+@media print{ body{background:#fff} .wrap{padding:0;max-width:100%} }

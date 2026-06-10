@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reference · The Three Moves — Inversion Selection by Rule</title>
+<style>
+  :root{
+    --paper:#fbfaf6; --ink:#1f1d1a; --muted:#6b6459; --line:#e3ddd0;
+    --amber:#c8862e; --amber-tint:#f4e6cc; --teal:#2e7d77; --teal-tint:#d3e9e6;
+    --rule:#d8d1c2; --accent:#7a3e2f; --red:#b23a2e;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;line-height:1.5;font-size:17px;}
+  .wrap{max-width:720px;margin:0 auto;padding:48px 28px 64px}
+  .eyebrow{font-family:"Helvetica Neue",Arial,sans-serif;text-transform:uppercase;
+    letter-spacing:.18em;font-size:12px;font-weight:700;color:var(--accent);margin:0 0 10px}
+  h1{font-size:32px;line-height:1.12;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:16px;margin:0 0 8px}
+  h2{font-family:"Helvetica Neue",Arial,sans-serif;font-size:12.5px;text-transform:uppercase;
+    letter-spacing:.13em;font-weight:700;color:var(--accent);margin:34px 0 8px}
+  p{margin:10px 0}
+  .rule{height:1px;background:var(--rule);border:0;margin:26px 0}
+
+  .vtable{width:100%;border-collapse:collapse;margin:8px 0;font-size:16px}
+  .vtable th,.vtable td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  .vtable th{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:700}
+  .vtable .chg{font-weight:600;white-space:nowrap}
+  .vtable .stay{color:var(--teal);font-weight:600}
+  .vtable .none{color:var(--red);font-weight:600}
+  .vtable .mv{color:var(--muted)}
+  .vtable .movename{font-weight:700}
+
+  .lawchips{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+  .lawchips .chip{flex:1 1 200px;border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:#fff;font-size:14.5px}
+  .lawchips .t{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:0 0 5px}
+  .lawchips .bad .t{color:var(--red)}
+  .lawchips .good .t{color:var(--teal)}
+  .lawchips .free .t{color:var(--amber)}
+
+  .shapes{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+  .shapes .chip{flex:1 1 140px;border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:#fff;text-align:center}
+  .shapes .name{font-size:24px;font-weight:700;line-height:1}
+  .shapes .name .rn{font-size:13px;color:var(--muted);font-weight:600;margin-left:4px}
+  .shapes .notes{font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-size:15.5px;letter-spacing:.06em;margin-top:7px;color:#2c2823}
+  .shapes .fing{font-size:13px;color:var(--muted);margin-top:4px}
+  .shapes .bass{font-size:13px;color:var(--teal);font-weight:700;margin-top:6px;border-top:1px solid var(--line);padding-top:6px}
+
+  .big-rule{background:var(--amber-tint);border-radius:8px;padding:14px 20px;margin:18px 0;font-size:17px}
+  .big-rule strong{color:var(--accent)}
+  .fine{font-size:14px;color:var(--muted)}
+  .footer{margin-top:40px;border-top:1px solid var(--rule);padding-top:18px;color:var(--muted);font-size:13.5px}
+  .footer a{color:var(--accent)}
+
+  @media print{ body{background:#fff;font-size:11.5pt} .wrap{padding:0;max-width:100%} table,.lawchips,.shapes{break-inside:avoid} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">Reference card · Selecting inversions</p>
+  <h1>The Three Moves</h1>
+  <p class="sub">Texture: right hand close triad + left hand bass root (keyboard style, four voices).
+  Count the root interval, apply the move — <em>the inversion chooses itself.</em></p>
+
+  <h2>The decision table</h2>
+  <table class="vtable">
+    <thead><tr><th>Chart says…</th><th>Roots are…</th><th>Shared</th><th>The move</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="mv">letters with one between<br>(C–A, A–F, E–C)</td>
+        <td class="chg">a 3rd apart</td><td class="stay">two</td>
+        <td><span class="movename">Hold two</span> — both shared keys stay down, the one remaining voice steps</td>
+      </tr>
+      <tr>
+        <td class="mv">everything else<br>(C–F, G–C, D–G)</td>
+        <td class="chg">a 4th/5th apart</td><td class="stay">one</td>
+        <td><span class="movename">Hold one</span> — the shared key stays down, the other two voices step to the nearest chord tones</td>
+      </tr>
+      <tr>
+        <td class="mv">neighbour letters<br>(F–G, G–A, C–D)</td>
+        <td class="chg">a 2nd apart</td><td class="none">none</td>
+        <td><span class="movename">Mirror the bass</span> — all three RH voices move <em>opposite</em> the bass, each to its nearest chord tone</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="fine">⚠ One exception clause: <strong>V→vi</strong> (G→Am in C) classifies as mirror but carries an extra rule — leading tone up, doubled 3rd. Lesson 2.</p>
+
+  <h2>The rulebook being respected</h2>
+  <div class="lawchips">
+    <div class="chip bad"><p class="t">Forbidden</p>Parallel 5ths and parallel octaves between <strong>any</strong> two voices — bass included; compounds (12ths) count.</div>
+    <div class="chip good"><p class="t">Fine</p>Parallel 3rds, 4ths and 6ths. Oblique motion (one voice holds) is always safe — that's what holding is.</div>
+    <div class="chip free"><p class="t">Free of charge</p>Root in bass + full triad in RH = <strong>root doubled</strong> automatically. Leading tone in a V chord walks up to the tonic.</div>
+  </div>
+
+  <h2>Second pass — the fingers</h2>
+  <p style="font-size:15px;margin:6px 0">The move decides the <strong>keys</strong>; the fingering rule decides the <strong>fingers</strong>: 3-and-5 within a third · thumb takes any fourth · pinky-side fourth puts the middle note on finger 2 (= the standard taught fingerings: RH 1·3·5 / 1·2·5 / 1·3·5, LH 5·3·1 / 5·3·1 / 5·2·1 by position<a href="https://pianoguidelessons.com/fingering-chords-on-piano/" style="color:var(--accent)">*</a>). A held key keeps its finger <strong>only if the fingering pattern survives the change</strong>; RH patterns flip entering/leaving 1st-inversion shapes — a held middle key then re-fingers 3↔2 underneath. Hold-two grid, right hand:</p>
+  <table class="vtable" style="font-size:14px">
+    <thead><tr><th>RH from…</th><th>root rises a 3rd</th><th>root falls a 3rd</th></tr></thead>
+    <tbody>
+      <tr><td class="chg">root position</td><td class="stay">both glue</td><td class="none">middle held, 3→2</td></tr>
+      <tr><td class="chg">1st inversion</td><td class="none">middle held, 2→3</td><td class="stay">both glue</td></tr>
+      <tr><td class="chg">2nd inversion</td><td class="stay">both glue</td><td class="stay">both glue</td></tr>
+    </tbody>
+  </table>
+  <p class="fine">LH triads mirror this (patterns flip at <em>2nd</em>-inversion shapes; from root position, <em>falling</em> roots keep both fingers) — academic while the LH plays single bass roots. Hold-one changes obey the same pass; mirror changes hold nothing, so nothing can swap.</p>
+
+  <h2>Worked: the '50s progression &nbsp;C – Am – F – G&nbsp; (I–vi–IV–V)</h2>
+  <div class="shapes">
+    <div class="chip"><div class="name">C<span class="rn">I</span></div><div class="notes">C&nbsp;E&nbsp;G</div><div class="fing">RH 1 · 3 · 5</div><div class="bass">bass: C3</div></div>
+    <div class="chip"><div class="name">Am<span class="rn">vi</span></div><div class="notes">C&nbsp;E&nbsp;A</div><div class="fing">RH 1 · 2 · 5</div><div class="bass">bass: A2</div></div>
+    <div class="chip"><div class="name">F<span class="rn">IV</span></div><div class="notes">C&nbsp;F&nbsp;A</div><div class="fing">RH 1 · 3 · 5</div><div class="bass">bass: F2</div></div>
+    <div class="chip"><div class="name">G<span class="rn">V</span></div><div class="notes">B&nbsp;D&nbsp;G</div><div class="fing">RH 1 · 2 · 5</div><div class="bass">bass: G2</div></div>
+  </div>
+
+  <table class="vtable">
+    <thead><tr><th>Change</th><th>Move</th><th>Glued</th><th>Moving</th><th>Bass</th></tr></thead>
+    <tbody>
+      <tr><td class="chg">C → Am</td><td class="stay">hold two</td><td class="stay">C glued (1); E held, finger 3→2</td><td class="mv">G→A (5)</td><td class="mv">C3 ↓ A2</td></tr>
+      <tr><td class="chg">Am → F</td><td class="stay">hold two</td><td class="stay">C glued (1), A glued (5)</td><td class="mv">E→F (2 lifts, 3 lands)</td><td class="mv">A2 ↓ F2</td></tr>
+      <tr><td class="chg">F → G</td><td class="none">mirror</td><td class="none">nothing</td><td class="mv">C→B (1) · F→D (3→2) · A→G (5)</td><td class="mv">F2 ↑ G2</td></tr>
+      <tr><td class="chg">G → C</td><td class="stay">hold one</td><td class="stay">G glued (5)</td><td class="mv">B→C (1, leading tone) · D→E (2→3)</td><td class="mv">G2 ↑ C3</td></tr>
+    </tbody>
+  </table>
+  <p class="fine">The loop closes on the exact starting C·E·G. C→Am is the loop's only held-key finger swap — the falling-3rd-from-root-position cell of the grid above.</p>
+
+  <div class="big-rule">
+    <strong>The mantra:</strong> hold what's shared, step what isn't — and when nothing is shared, <strong>mirror the bass</strong>. Keys first, fingers second: a held key earns a glued finger only if the fingering pattern survives. The lazy same-direction slide at a 2nd-apart change is where parallel octaves and fifths live. <em>The chord is never wrong; the road is.</em>
+  </div>
+
+  <p class="fine">Terminology note: while the left hand plays roots, the harmony is always root position — the RH "inversion" you select is really the rotation of the three upper voices. Textbook names for the moves: common-tone &amp; stepwise / contrary-motion &amp; nearest (<a href="https://musictheory.pugetsound.edu/mt21c/VoiceLeadingFourPartsRootPosition.html" style="color:var(--accent)">MT21C 26.7</a>).</p>
+
+  <p class="footer">
+    From Lesson 1 · <a href="../lessons/0001-the-three-moves.html">The Three Moves</a> · companion to the blind-play workspace's <a href="../../playing-chords-blindly/reference/0002-both-hands-loop-map.html">Both-Hands Loop Map</a><br>
+    Mission: select chord inversions correctly and efficiently, at playing speed.
+  </p>
+
+</div>
+</body>
+</html>
