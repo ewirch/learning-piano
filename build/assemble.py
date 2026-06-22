@@ -18,9 +18,10 @@ targets, including cross-course links).
 import html.parser
 import re
 import shutil
-import subprocess
 import sys
 from pathlib import Path
+
+import markdown
 
 ROOT = Path(__file__).resolve().parent.parent
 BUILD = ROOT / "build"
@@ -137,21 +138,28 @@ def display_link_text(section, raw, course_title):
 
 # ---------- rendering ----------
 
-def pandoc(md_text, template, title, eyebrow=None):
-    cmd = ["pandoc", "--from", "markdown", "--to", "html5", "-s",
-           "--template", str(TEMPLATES / template), "--metadata", f"title={title}"]
-    if eyebrow:
-        cmd += ["--metadata", f"eyebrow={eyebrow}"]
-    r = subprocess.run(cmd, input=md_text, capture_output=True, text=True)
-    if r.returncode != 0:
-        sys.exit(f"pandoc failed for '{title}':\n{r.stderr}")
-    return r.stdout.replace("/*SITE_CSS*/", SITE_CSS)
+# One reusable converter. def_list renders the overview cards; md_in_html lets the
+# intro <div> hold markdown; smarty gives the curly quotes/dashes pandoc produced.
+# reset() clears per-document state between renders.
+MD = markdown.Markdown(extensions=["def_list", "md_in_html", "smarty"], output_format="html")
+
+
+def render(md_text, template, title, eyebrow=None):
+    MD.reset()
+    body = MD.convert(md_text)
+    eyebrow_html = f'<p class="eyebrow">{html.escape(eyebrow)}</p>' if eyebrow else ""
+    tpl = (TEMPLATES / template).read_text(encoding="utf-8")
+    return (tpl
+            .replace("$title$", html.escape(title))
+            .replace("$eyebrow$", eyebrow_html)
+            .replace("$body$", body)
+            .replace("/*SITE_CSS*/", SITE_CSS))
 
 
 def build_overview_md(course_dir, intro, sections, order, course_title=None):
     out = []
     if intro:
-        out.append(f'<div class="intro">\n\n{intro}\n\n</div>')
+        out.append(f'<div class="intro" markdown="1">\n\n{intro}\n\n</div>')
     for name in order:
         entries = sections.get(name, [])
         if not entries:
@@ -201,11 +209,11 @@ def build_course(slug):
                     fail(f"{slug}/index.md '{name}' lists [[{s}]] but {src.relative_to(ROOT)} missing")
                     continue
                 (out_dir / href).write_text(
-                    pandoc(src.read_text(encoding="utf-8"), "document.html", md_h1(src)),
+                    render(src.read_text(encoding="utf-8"), "document.html", md_h1(src)),
                     encoding="utf-8")
     overview_md = build_overview_md(course_dir, intro, sections, order, fm.get("title", slug))
     (out_dir / "index.html").write_text(
-        pandoc(overview_md, "overview.html", fm.get("title", slug), eyebrow="Learning Piano"),
+        render(overview_md, "overview.html", fm.get("title", slug), eyebrow="Learning Piano"),
         encoding="utf-8")
 
 
@@ -257,7 +265,7 @@ def main():
 
     fm, intro, sections, order = parse_manifest((ROOT / "index.md").read_text(encoding="utf-8"))
     (DIST / "index.html").write_text(
-        pandoc(build_overview_md(ROOT, intro, sections, order),
+        render(build_overview_md(ROOT, intro, sections, order),
                "overview.html", fm.get("title", "Learning Piano")),
         encoding="utf-8")
 

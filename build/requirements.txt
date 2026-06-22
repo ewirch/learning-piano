@@ -1,0 +1,3 @@
+# Site build dependency. Verified with 3.10.2; the def_list and md_in_html
+# extensions have been stable for many releases, so a floor pin is enough.
+markdown>=3.6
